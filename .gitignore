@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# client build output
+/client/build
+/client/dist
+
+# server build output
+/build
+
+# environment variables
+.env
+
+# IDE files
+*.iml
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
