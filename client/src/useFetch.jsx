@@ -28,13 +28,9 @@ const useFetch = (url, refresh) => {
 
     useEffect(() => {
         fetchData();
-    }, [url, refresh]); // Trigger fetch when 'refresh' changes
+    }, [url, refresh]); // Trigger fetch when 'url' or 'refresh' changes
 
-    const refetch = () => {
-        fetchData(); // Call fetchData to trigger a new fetch
-    };
-
-    return { data, isPending, error, refetch };
+    return { data, isPending, error };
 };
  
 export default useFetch;

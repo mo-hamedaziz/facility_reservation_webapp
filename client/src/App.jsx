@@ -7,6 +7,8 @@ import RequestDetails from './RequestDetails';
 import NotFound from './NotFound';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import PresidentDetails from './PresidentDetails';
+import PresidentList from './PresidentList';
 
 function App() {
 
@@ -23,6 +25,12 @@ function App() {
             <Route 
               path="/request/:id"
               element={<RequestDetails />}/>
+            <Route 
+              path="/presidents"
+              element={<PresidentList />}/>
+            <Route 
+              path="/account/president/:id"
+              element={<PresidentDetails />}/>
             <Route 
               path='*'
               element={ <NotFound /> }

@@ -11,7 +11,7 @@ import React, { useRef } from 'react';
 const RequestList = () => {
     const [refresh, setRefresh] = useState(false); // State variable to trigger refresh
     const [selectedDate, setSelectedDate] = useState(new Date()); // State variable to store selected date
-    const {data:requests, isPending, error, refetch} = useFetch('http://192.168.1.189:3333/requests', refresh);
+    const {data:requests, isPending, error} = useFetch('http://192.168.1.189:3333/requests', refresh);
     // Pass the 'refresh' state variable to the 'useFetch' hook
 
     const handleRefresh = () => {

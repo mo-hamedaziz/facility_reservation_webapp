@@ -22,7 +22,7 @@ const RequestDetails = () => {
             // Refetch data after action is performed
             refetch();
         } catch (error) {
-            console.error('Error occurred:', error);
+            console.error('Error occurred when approving/denying the request:', error);
         }
     }
 
@@ -38,7 +38,7 @@ const RequestDetails = () => {
         <Container className="request-details">
             <Row className="justify-content-center">
                 <Col xs={12} md={8}>
-                    {error && <div>{error}</div>}
+                    {error && <h1>Request Not Found on the Server</h1> }
                     {isPending && <div>Loading ...</div>}
                     {request &&
                         <>
