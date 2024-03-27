@@ -1,0 +1,63 @@
+.request-details {
+    padding: 20px;
+    margin-top: 50px;
+  }
+  
+  .request-details article {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    max-height: 800px;
+    overflow:scroll;
+  }
+  
+  .request-details h1 {
+    margin-bottom: 20px;
+  }
+  
+  .request-details p {
+    margin-bottom: 5px;
+  }
+  
+  .request-details hr {
+    margin: 20px 0;
+  }
+  
+  .request-details .button-group {
+    margin-top: 20px;
+  }
+
+  #comment {
+    padding-left: 20px;
+  }
+
+  #evDesc {
+    padding-left: 20px
+  }
+
+  button {
+    border: none !important;
+  }
+
+  button:hover {
+    opacity: 70% !important;
+  }
+
+  button:disabled {
+    opacity: 50% !important;
+  }
+
+  #download-detials{
+    background-color: #008DDA;
+  }
+
+  #approve-req {
+    background-color: #4CAF50;
+  }
+
+  #deny-req {
+    background-color: #F44336;
+  }
+  
