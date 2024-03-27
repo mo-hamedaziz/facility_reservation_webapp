@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* base styles */
+* {
+  font-family: "Quicksand";
+  
+}
+
+body {
+  background-color: #FDFAF6;
+}
+
+/* Disable focus styles */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
