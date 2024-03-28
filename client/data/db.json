@@ -1,0 +1,279 @@
+{
+    "requests": [
+      {
+        "eventType": "Workshop",
+        "eventName": "Introduction to javascript",
+        "sender": "Sahar Bettaieb",
+        "clubName": "SecuriNets",
+        "classroom": "151",
+        "date": "2024-03-14",
+        "time": "Evening",
+        "eventDescription": "blablabla01",
+        "logistics": ["video projecteur","multiprises"],
+        "participantsCount": "30",
+        "comment": "Merci01",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-01T16:00:00Z",
+        "status": "Denied",
+        "id": "1"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere tempor tempus. Sed iaculis urna non purus ullamcorper maximus. Phasellus nulla nibh, commodo vitae lacus eget, lacinia tempus felis. Fusce nisl quam, suscipit sit amet dictum in, posuere finibus justo. Curabitur blandit nibh est, eu varius enim rutrum at. Praesent blandit feugiat nibh, quis consequat velit rhoncus id. Integer enim risus, egestas quis felis vehicula, molestie mollis ligula. Sed tincidunt tristique fermentum. Integer lectus justo, rutrum vel ante quis, efficitur tempus quam. Mauris sit amet felis et justo condimentum aliquam. Pellentesque in justo efficitur, tincidunt neque quis, sollicitudin urna. ",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Suspendisse lectus nibh, vestibulum sed pellentesque vel, mattis euismod tortor. Maecenas ac ex justo. Sed ut ex ante. Pellentesque suscipit nec odio at consectetur. ",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "2"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "3"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "4"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Denied",
+        "id": "5"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "6"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Approved",
+        "id": "7"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "8"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Approved",
+        "id": "9"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "10"
+      },
+
+      {
+        "eventType": "Hackathon",
+        "eventName": "WinterCup",
+        "sender": "Karim Ben Boubaker",
+        "clubName": "ACM",
+        "classroom": "SL",
+        "date": "2024-03-12",
+        "time": "Whole Day",
+        "eventDescription": "blablabla02",
+        "logistics": ["video projecteur","multiprises","wifi"],
+        "participantsCount": "200",
+        "comment": "Merci02",
+        "attachment":"This feature will be added soon",
+        "submissionTime":"2024-03-03T16:00:00Z",
+        "status": "Pending",
+        "id": "11"
+      }
+      
+      
+    ],
+    "presidents": [
+      {
+        "firstName":"Sahar",
+        "lastName":"Bettaieb",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"SecuriNets",
+        "id":"1"
+      },
+      {
+        "firstName":"Karim",
+        "lastName":"Ben Boubaker",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"ACM",
+        "id":"2"
+      },
+      {
+        "firstName":"Amine",
+        "lastName":"Baryoucha",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"Junior Entreprise",
+        "id":"3"
+      },
+      {
+        "firstName":"XYZ",
+        "lastName":"XYZ",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"Theatro INSAT",
+        "id":"4"
+      },
+      {
+        "firstName":"Sahar",
+        "lastName":"Bettaieb",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"SecuriNets",
+        "id":"5"
+      },
+      {
+        "firstName":"Karim",
+        "lastName":"Ben Boubaker",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"ACM",
+        "id":"6"
+      },
+      {
+        "firstName":"Amine",
+        "lastName":"Baryoucha",
+        "cin":"12345678",
+        "phoneNumber":"12345678",
+        "clubName":"Junior Entreprise",
+        "id":"7"
+      }
+    ],
+    "signup_requests" : [
+      {
+        "id":"1",
+        "firstName":"Mohamed Aziz",
+        "lastName":"Bchini",
+        "email":"mohamedaziz@gmail.com",
+        "clubName": "SecuriNets"
+
+      },
+      {
+        "id":"2",
+        "firstName":"Oussema",
+        "lastName":"Ferjani",
+        "email":"oussamaferjani@gmail.com",
+        "clubName": "JCI"
+
+      }
+    ]
+  }
