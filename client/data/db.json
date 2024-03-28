@@ -206,6 +206,7 @@
         "lastName":"Bettaieb",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"saharbettaieb@gmail.com",
         "clubName":"SecuriNets",
         "id":"1"
       },
@@ -214,6 +215,7 @@
         "lastName":"Ben Boubaker",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"ACM",
         "id":"2"
       },
@@ -222,6 +224,7 @@
         "lastName":"Baryoucha",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"Junior Entreprise",
         "id":"3"
       },
@@ -230,6 +233,7 @@
         "lastName":"XYZ",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"Theatro INSAT",
         "id":"4"
       },
@@ -238,6 +242,7 @@
         "lastName":"Bettaieb",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"SecuriNets",
         "id":"5"
       },
@@ -246,6 +251,7 @@
         "lastName":"Ben Boubaker",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"ACM",
         "id":"6"
       },
@@ -254,6 +260,7 @@
         "lastName":"Baryoucha",
         "cin":"12345678",
         "phoneNumber":"12345678",
+        "email":"xyz@gmail.com",
         "clubName":"Junior Entreprise",
         "id":"7"
       }

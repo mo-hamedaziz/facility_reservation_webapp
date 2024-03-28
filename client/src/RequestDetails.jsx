@@ -1,12 +1,12 @@
 import './RequestDetails.css'; 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import useFetch from "./useFetch";
 
 const RequestDetails = () => {
     const { id } = useParams();
-    const { data: request, isPending, error, refetch } = useFetch('http://localhost:3333/requests/' + id);
-    const navigate = useNavigate();
+    const { data: request, isPending, error } = useFetch('http://localhost:3333/requests/' + id);
+    //const navigate = useNavigate();
 
     const handleClick = async (action) => {
         try {

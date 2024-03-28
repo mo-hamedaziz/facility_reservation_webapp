@@ -1,8 +1,7 @@
 import './PresidentList.css'; 
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
-import { useState, useEffect } from "react";
-import Form from 'react-bootstrap/Form';
+import { useState } from "react";
 import { Row, Col, Container } from 'react-bootstrap';
 
 
@@ -26,7 +25,7 @@ const PresidentList = () => {
                             <div className="president-preview" key={president.id}>
                                 <Row>
                                     <Col xs={1} className='profile-picture'>
-                                        <img src="../public/images/anonymousProfilePicture.svg" alt="Profile Picture" />
+                                        <img src="/images/anonymousProfilePicture.svg" alt="Profile Picture" />
                                     </Col>
                                     <Col xs={8}>
                                         <h2>{president.firstName} {president.lastName}</h2>
