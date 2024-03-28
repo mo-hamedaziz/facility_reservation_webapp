@@ -1,0 +1,74 @@
+.rendering-details {
+    margin: 50px auto;
+  }
+  
+.details-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px #ccc;
+    padding: 20px;
+  }
+
+  button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+
+  .back-to-list {
+    margin: 20px 0;
+  }
+
+  .back-to-list > button {
+    background-color: #008DDA !important;
+  }
+
+  .picture-and-name {
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Increase border radius for a softer frame */
+    padding: 0;
+    width: fit-content;
+    box-shadow: 0 0 20px #ccc, inset 0 0 10px #ccc; /* Add outer and inner shadow for a glowing effect */
+    background: linear-gradient(45deg, #fff, #f0f0f0); /* Gradient background for depth */
+}
+
+.picture-and-name img {
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 15px; /* Match border radius of the frame */
+}
+
+.picture-and-name h2 {
+    font-weight: bold;
+    background-color: #eaeaea;
+    padding: 20px 0;
+    margin: 0 10px;
+    border-bottom-left-radius: 20px; /* Ensure border radius matches frame */
+    border-bottom-right-radius: 20px;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+}
+
+.details > .controls {
+    text-align: right;
+    align-self: flex-end;
+    margin: 20px;
+}
+
+.details > .controls > #view-requests {
+    background-color: #008DDA;
+}
+
+.details > .controls > #delete-user {
+    background-color: #F44336;
+}
+
+
