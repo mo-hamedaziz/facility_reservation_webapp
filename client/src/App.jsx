@@ -9,13 +9,16 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import PresidentDetails from './PresidentDetails';
 import SignupRequestPresidentListSelector from './SignupRequestPresidentListSelector';
+import PresidentRequests from './PresidentRequests'
 
 function App() {
 
   return (
     <Router>
-      <>
-        <Navbar />
+      <div className="app">
+        <div className="navbar">
+          <Navbar />
+        </div>
         <div className="content">
           <Routes>
             <Route 
@@ -32,13 +35,18 @@ function App() {
               path="/account/president/:id"
               element={<PresidentDetails />}/>
             <Route 
+              path="/requests/user/:id"
+              element={<PresidentRequests />}/>
+            <Route 
               path='*'
               element={ <NotFound /> }
             />
           </Routes>
         </div>
-        <Footer />
-      </>
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
     </Router>
   )
 }
