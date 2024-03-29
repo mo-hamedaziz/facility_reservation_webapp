@@ -10,6 +10,7 @@ import Footer from './Footer';
 import PresidentDetails from './PresidentDetails';
 import SignupRequestPresidentListSelector from './SignupRequestPresidentListSelector';
 import PresidentRequests from './PresidentRequests'
+import SignupRequestDetails from './SignupRequestDetails'
 
 function App() {
 
@@ -37,6 +38,9 @@ function App() {
             <Route 
               path="/requests/user/:id"
               element={<PresidentRequests />}/>
+            <Route 
+              path="/signups/requests/:id"
+              element={<SignupRequestDetails />}/>
             <Route 
               path='*'
               element={ <NotFound /> }

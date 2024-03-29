@@ -1,6 +1,5 @@
 .request-details {
     padding: 20px;
-    margin-top: 50px;
   }
   
   .request-details article {
@@ -36,28 +35,58 @@
   #evDesc {
     padding-left: 20px
   }
+  
+  #comment-field {
+    margin-top: 10px;
+    resize: none; /* Disable resizing */
+    width: 300px; /* Set the width of the textarea */
+    height: 50px; /* Set the height of the textarea */
+    padding: 10px; /* Add padding to the textarea */
+    border: 2px solid #ccc; /* Add a border to the textarea */
+    border-radius: 8px; /* Add border radius for rounded corners */
+    font-size: 16px; /* Set the font size */
+    transition: var(--transition);
+  }
+
+  #comment-field:focus {
+    border-color: #008DDA;
+    height: 200px;
+  }
+
+  .warning {
+    color: var(--yellow);
+    font-weight: bold;
+    font-size: 16px;
+  }
 
   button {
     border: none !important;
-  }
-
-  button:hover {
-    opacity: 70% !important;
+    font-weight: bold !important;
+    color: white;
+    font-size: 16px;
   }
 
   button:disabled {
     opacity: 50% !important;
   }
 
-  #download-detials{
-    background-color: #008DDA;
+  #download-details{
+    background-color: var(--blue);
   }
 
   #approve-req {
-    background-color: #4CAF50;
+    background-color: var(--green);
+  }
+
+  #approve-req:hover {
+    box-shadow: 0 0 10px var(--green);
   }
 
   #deny-req {
-    background-color: #F44336;
+    background-color: var(--red);;
+  }
+
+  #deny-req:hover {
+    box-shadow: 0 0 10px var(--red);
   }
   
