@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+
+
 /* base styles */
-* {
-  font-family: "Quicksand";
+:root {
+  --blue: #008DDA;
+  --gray: #ccc;
+  --red: #F44336;
+  --green: #4CAF50;
+  --yellow: #FFC107;
+  --border-radius: 4px;
+  --transition: 0.3s ease;
+  --font-family: Quicksand;
   
+}
+
+*{
+  font-family: var(--font-family);
 }
 
 body {

@@ -81,9 +81,9 @@ const PresidentDetails = () => {
             {/* Confirmation Modal */}
             <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
               <Modal.Header closeButton>
-                <Modal.Title>Confirmation</Modal.Title>
+                <Modal.Title><h2>Confirmation</h2></Modal.Title>
               </Modal.Header>
-              <Modal.Body>Are you sure you want to delete this account?</Modal.Body>
+              <Modal.Body><strong>Are you sure you want to delete this account?</strong><br />*The account owner will be notified via email.</Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={() => setShowConfirmation(false)}>
                   Cancel

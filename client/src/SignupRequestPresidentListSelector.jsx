@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './SignupRequestPresidentListSelector.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import PresidentList from './PresidentList';
 import SignupRequests from './SignupRequests';
 
 const SignupRequestPresidentListSelector = () => {
-  const [selectedOption, setSelectedOption] = useState('option1');
+
+  const [selectedOption, setSelectedOption] = useState('option1'); // Default value
 
   const handleSelect = (optionId) => {
     setSelectedOption(optionId);
@@ -28,7 +29,7 @@ const SignupRequestPresidentListSelector = () => {
           id="option2"
           onClick={() => handleSelect('option2')}
         >
-          List of requests signups
+          List of requested signups
         </Col>
       </Row>
       <Row className='option-output'>

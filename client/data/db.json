@@ -276,22 +276,38 @@
       "email": "xyz@gmail.com",
       "clubName": "Junior Entreprise",
       "id": "7"
+    },
+    {
+      "id": "1c0b",
+      "firstName": "Mohamed Aziz",
+      "lastName": "Bchini",
+      "clubName": "SecuriNets",
+      "email": "mohamedaziz@gmail.com",
+      "phoneNumber": "12345678"
     }
   ],
   "signup_requests": [
     {
-      "id": "1",
-      "firstName": "Mohamed Aziz",
-      "lastName": "Bchini",
-      "email": "mohamedaziz@gmail.com",
-      "clubName": "SecuriNets"
-    },
-    {
       "id": "2",
       "firstName": "Oussema",
       "lastName": "Ferjani",
+      "phoneNumber": "12345678",
       "email": "oussamaferjani@gmail.com",
-      "clubName": "JCI"
+      "clubName": "JCI",
+      "submissionTime": "2023-12-08T13:52:16.043Z",
+      "startOfMandate": "2024-01-01",
+      "comment": "Merci02"
+    },
+    {
+      "id": "3",
+      "firstName": "new 1",
+      "lastName": "new 2",
+      "phoneNumber": "12345678",
+      "email": "new1new2gmail.com",
+      "clubName": "NEW club",
+      "submissionTime": "2023-12-08T13:52:16.043Z",
+      "startOfMandate": "2024-01-01",
+      "comment": "Merci new"
     }
   ]
 }
