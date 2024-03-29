@@ -8,6 +8,7 @@
 
 body {
   background-color: #FDFAF6;
+  height: 100%;
 }
 
 /* Disable focus styles */
@@ -17,6 +18,17 @@ body {
   outline: none !important;
   box-shadow: none !important;
 }
+
+.app {
+  display: flex;
+  min-height: 100vh; /* Ensures the container takes up the full viewport height */
+  flex-direction: column;
+}
+
+.content {
+  flex: 1; /* Allows content to expand and fill remaining space */
+}
+
 
 
 
