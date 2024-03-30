@@ -1,5 +1,5 @@
 import './App.css' 
-/* import DashPresident from './components/DashPresident'; */
+import DashPresident from './components/DashPresident'; 
 import DashAdmin from './components/DashAdmin';
 function App() {
   return <div className="App">

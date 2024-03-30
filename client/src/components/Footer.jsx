@@ -12,7 +12,7 @@ const Footer = () => {
                     <a href="/terms-of-service">Terms of Service</a>
                 </div>
             </div>
-        </footer>
+        </footer>   
     );
 };
 
