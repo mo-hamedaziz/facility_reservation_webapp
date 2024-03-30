@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+/* Body styles */
+body {
+  font-family: "Quicksand", sans-serif; /* Utilisation de la police Quicksand */
+  margin: 0;
+  padding: 0;
+  background-color: #fdfaf6;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Container styles */
+.login-container {
+  backdrop-filter: blur(8px); /* Ajout de flou au conteneur */
+  background-color: rgba(255, 255, 255, 0.3); /* Couleur de fond avec opacité */
+  padding: 30px; /* Réduction de la marge intérieure */
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 60px auto 0; /* Margin-top de 100px pour déplacer le conteneur vers le bas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ajout d'ombre */
+}
+
+/* Form styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input styles */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #e4efe7; /* Couleur de la bordure */
+  border-radius: 3px; /* Réduction de la taille des coins */
+  background-color: #fdfaf6; /* Couleur de fond */
+  outline: none;
+}
+
+/* Label styles */
+.login-label {
+  font-size: 18px; /* Augmentation de la taille de police */
+  font-weight: bold; /* Texte en gras */
+  color: #010101; /* Couleur du label */
+  margin-bottom: 5px; /* Ajout d'espace en dessous du label */
+}
+
+/* Select styles */
+.login-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #e4efe7;
+  border-radius: 3px;
+  background-color: #fdfaf6;
+  outline: none;
+}
+
+/* Button styles */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #16c79a; /* Couleur de fond du bouton */
+  color: #ffffff; /* Couleur du texte du bouton */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #14a583; /* Couleur de fond du bouton au survol */
+}
+
+.login-button:active {
+  background-color: #14967a; /* Couleur de fond du bouton lorsqu'il est cliqué */
+}
+
+/* Ajout de styles pour les liens "Sign Up" et "Forgot your password?" */
+.link-style {
+  color: #000000; /* Couleur du texte */
+  text-decoration: none; /* Suppression du soulignement */
+  cursor: pointer; /* Curseur en main au survol */
+}
+
+.link-style:hover {
+  text-decoration: underline; /* Soulignement au survol */
+}
+.forget {
+  margin-bottom: 30px;
+}

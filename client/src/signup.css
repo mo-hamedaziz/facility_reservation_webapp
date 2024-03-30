@@ -1,0 +1,54 @@
+/* signup.css */
+body {
+  font-family: "Quicksand", sans-serif; /* Utilisation de la police Quicksand */
+  margin: 0;
+  padding: 0;
+  background-color: #fdfaf6;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.signup-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #16c79a;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #12825c;
+}
