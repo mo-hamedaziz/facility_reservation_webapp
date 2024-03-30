@@ -1,14 +1,10 @@
-import { useState } from 'react'
-import './App.css'
-
+import './App.css' 
+/* import DashPresident from './components/DashPresident'; */
+import DashAdmin from './components/DashAdmin';
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <h1>New Project Here ..</h1>
-    </>
-  )
+  return <div className="App">
+    <DashAdmin /> 
+  </div>
 }
 
-export default App
+export default App;
