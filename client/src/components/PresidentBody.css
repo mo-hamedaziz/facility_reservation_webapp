@@ -4,7 +4,7 @@
     align-items: center;
     width: 100%;
     min-height: 600px;
-    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    background: linear-gradient(to right, #a8e6cf, #dcedc1);
     padding: 20px;
     box-sizing: border-box;
 }
@@ -21,17 +21,18 @@
     align-items: center;
     justify-content: center;
     width: calc(33% - 40px);
+    max-width: 200px;
     height: 200px;
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #0072ff, #00c6ff);
+    background: linear-gradient(to right, #7db285, #598f64);
     color: #fff;
     margin: 20px;
     padding: 20px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-sizing: border-box;
-    text-align: center; /* Center the text */
+    text-align: center;
 }
 
 .box:hover {

@@ -15,7 +15,7 @@ const AdminProfile = () => {
             <button className="classic-btn logout-btn" onClick={() => window.location.href='/logout'}>Log Out</button>
             <div className="social-media">
                 <Facebook color="blue" size={32} className="social-icon" />
-                <Envelope color="skyblue" size={32} className="social-icon" />
+                <Envelope color="blue" size={32} className="social-icon" />
                 <Linkedin color="blue" size={32} className="social-icon" />
             </div>
         </div>
