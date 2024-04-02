@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 .profile-container {
     display: flex;
@@ -9,7 +9,7 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #a8e6cf, #dcedc1);/* Adjusted green colors */
+    background: linear-gradient(to right, #bdf7cc, #16C79A); /* Adjusted green colors */
     transition: box-shadow 0.3s ease;
     font-family: 'Poppins', sans-serif;
 }
@@ -17,7 +17,6 @@
 .profile-container:hover {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
 }
-
 
 .profile-img {
     width: 180px;
@@ -30,20 +29,20 @@
 .profile-name {
     font-size: 1.6em;
     margin-bottom: 15px;
-    color: #333;
+    color: #FFFFFF; /* Changed from #333 to #FFFFFF */
     font-weight: 600;
 }
 
 .profile-club {
     font-size: 1.1em;
     margin-bottom: 10px;
-    color: #777;
+    color: #FFFFFF; /* Changed from #777 to #FFFFFF */
     font-weight: 400;
 }
 
 .profile-bio {
     font-size: 0.9em;
-    color: #666;
+    color: #FFFFFF; /* Changed from #666 to #FFFFFF */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -53,8 +52,8 @@
     margin-bottom: 10px;
     border: none;
     border-radius: 25px;
-    background-color: #34eb6b;
-    color: #fff;
+    background-color: #FAF1E6; /* Changed from #34eb6b to #E4EFE7 */
+    color: #333; /* Changed from #fff to #333 for better visibility */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     font-weight: 500;
@@ -65,11 +64,10 @@
 }
 
 .classic-btn:hover {
-    background-color: #2da857;
+    background-color: #bdf7cc; /* Changed from #2da857 to #bdf7cc */
     transform: scale(1.05);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 
 .classic-btn:active {
     transform: scale(0.95);
@@ -83,7 +81,7 @@
 }
 
 .social-icon {
-    color: #333;
+    color: #FAF1E6; /* Changed from #333 to #FFFFFF */
     cursor: pointer;
 }
 

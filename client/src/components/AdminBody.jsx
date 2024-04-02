@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RequestList from './RequestList';
 import PresidentsList from './PresidentsList';
 import { Briefcase, PeopleFill } from 'react-bootstrap-icons';
+import { Card } from 'react-bootstrap';
 import "./AdminBody.css"
 
 const AdminBody = () => {
@@ -25,28 +26,28 @@ const AdminBody = () => {
     return (
         <div className="container">
             <div className="boxes">
-                <div className="box" onClick={handleRequestClick}>
-                    <div className="box-title">
-                        <h2>Requests</h2>
-                    </div>
-                    <span className="box-content">
-                        <Briefcase size={32} />
-                        <div className="number">
-                            <h4>5</h4>
-                        </div>
-                    </span>
-                </div>
-                <div className="box" onClick={handlePresidentsClick}>
-                    <div className="box-title">
-                        <h2>Presidents</h2>
-                    </div>
-                    <span className="box-content">
-                        <PeopleFill size={32} />
-                        <div className="number">
-                            <h4>3</h4>
-                        </div>
-                    </span>
-                </div>
+                <Card style={{ width: '18rem' }} className="box" onClick={handleRequestClick}>
+                    <Card.Body>
+                        <Card.Title className="title"><h2>Requests</h2></Card.Title>
+                        <Card.Text>
+                            <Briefcase size={32} />
+                            <div className="number">
+                                <h4>5</h4>
+                            </div>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem' }} className="box" onClick={handlePresidentsClick}>
+                    <Card.Body>
+                        <Card.Title className="title"><h2>Presidents</h2></Card.Title>
+                        <Card.Text>
+                            <PeopleFill size={32} />
+                            <div className="number">
+                                <h4>3</h4>
+                            </div>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
             {showRequestList && <RequestList />}
             {showPresidentsList && <PresidentsList />}

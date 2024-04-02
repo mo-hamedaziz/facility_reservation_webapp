@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     min-height: 600px;
-    background: linear-gradient(to right, #a8e6cf, #dcedc1);
+    background: linear-gradient(to right, #FAF1E6, #FDFAF6);
     padding: 20px;
     box-sizing: border-box;
 }
@@ -25,7 +27,7 @@
     height: 200px;
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #7db285, #598f64);
+    background: linear-gradient(to right, #bdf7cc, #16C79A);
     color: #fff;
     margin: 20px;
     padding: 20px;
@@ -41,10 +43,10 @@
 }
 
 .box-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #fff; /* Change the title color to white */
+    color: #FFFFFF;
 }
 
 .box-content {
@@ -53,24 +55,33 @@
     justify-content: center;
     width: 100%;
     padding: 20px;
-    flex-direction: column; /* Stack the items vertically */
-    gap: 10px; /* Add some space between the items */
+    flex-direction: column;
+    gap: 10px;
 }
 
 .icon {
-    font-size: 50px; /* Increase the icon size */
+    font-size: 50px;
 }
 
 .number {
     font-size: 18px;
     font-weight: bold;
     margin-left: 10px;
-    color: #fff; /* Change the number color to white */
-    padding: 5px 10px; /* Add some padding to the number */
-    border-radius: 5px; /* Add rounded corners to the number */
+    color: #FFFFFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
 }
+
 .number-color {
-    color: #ffffff; /* Change the color to white */
-    padding: 5px 10px; /* Add some padding */
-    border-radius: 5px; /* Add rounded corners */
+    color: #FFFFFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.title {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
