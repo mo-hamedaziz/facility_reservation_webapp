@@ -10,20 +10,48 @@ function SignUp() {
   const [clubName, setClubName] = useState("");
   const [startMandate, setStartMandate] = useState("");
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    // Ajoutez ici la logique pour gérer la soumission du formulaire de sign up
-    console.log(
-      "Sign Up:",
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      cin,
-      clubName,
-      startMandate
-    );
+  const formData = {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    cin,
+    clubName,
+    startMandate
   };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3333/signup_requests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add signup data');
+      }
+  
+      // Assuming successful signup, clear the form fields
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhoneNumber("");
+      setCin("");
+      setClubName("");
+      setStartMandate("");
+  
+      alert('Signup successful!');
+    } catch (error) {
+      console.error('Error adding signup data:', error.message);
+      alert('Failed to sign up. Please try again later.');
+    }
+  };
+  
 
   return (
     <div className="signup-container">

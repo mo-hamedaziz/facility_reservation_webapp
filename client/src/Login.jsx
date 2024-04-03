@@ -1,21 +1,40 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("guest");
+  const [userType, setUserType] = useState("clubPresident");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Ajoutez ici la logique pour gérer la soumission du formulaire de connexion
-    console.log("Login:", email, password, userType);
+    try {
+      const endpoint = userType === "clubPresident" ? "/presidents" : "/admins";
+      const response = await fetch(`http://localhost:3333${endpoint}`);
+      if (response.ok) {
+        const data = await response.json();
+        const user = data.find((u) => u.email === email && u.password === password);
+        if (user) {
+          if (userType === "clubPresident") {
+            navigate("/dashboard/president");
+          } else {
+            navigate("/dashboard/admin");
+          }
+        } else {
+          console.log("Invalid email or password");
+        }
+      } else {
+        console.log("Error fetching data");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const handleForgotPassword = () => {
-    // Ajoutez ici la logique pour gérer le lien "Forgot your password?"
     console.log("Forgot your password?");
   };
 
@@ -28,6 +47,7 @@ function Login() {
             Email Address:
           </label>
           <input
+            required
             type="email"
             id="email"
             value={email}
@@ -41,6 +61,7 @@ function Login() {
             Password:
           </label>
           <input
+            required
             type="password"
             id="password"
             value={password}
@@ -73,7 +94,7 @@ function Login() {
         </button>
         <div>
           <span>
-            Don t have an account? <Link to="/signup">Sign Up</Link>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
           </span>
         </div>
       </form>
