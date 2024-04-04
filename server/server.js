@@ -1,10 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const workoutRoutes = require("./routes/dashboardRoutes");
 
 const port = process.env.PORT;
 
 const app = express();
+
+// Using middleware
+app.use(express.json());
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+});
+
+// Dashboard Routes
+app.use('/dashboard',workoutRoutes);
 
 // Connect to DB
 console.log('Connecting to the database ...');
