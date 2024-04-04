@@ -1,5 +1,6 @@
 #For the server folder
 server/node_modules
+server/.env
 
 #For the client folder
 # Logs
