@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Envelope, Linkedin, BoxArrowRight, PersonCircle } from 'react-bootstrap-icons'; // Importing additional icons
+import { Facebook, Envelope, Linkedin, BoxArrowRight, PersonCircle } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 const AdminProfile = () => {
@@ -11,16 +12,22 @@ const AdminProfile = () => {
                 alt="Profile Picture"
             />
             <h1 className="profile-name">Name</h1>
-            <button className="classic-btn" onClick={() => window.location.href='/account'}>
-                <PersonCircle color="white" size={20} /> Account {/* Added PersonCircle icon */}
-            </button>
-            <button className="classic-btn logout-btn" onClick={() => window.location.href='/logout'}>
-                <BoxArrowRight color="white" size={20} /> Log Out {/* Added BoxArrowRight icon */}
-            </button>
+            <Link to="/Account" className="classic-btn" style={{ textDecoration: 'none' }}>
+                <PersonCircle color="white" size={20} /> Account
+            </Link>
+            <Link to="/Logout" className="classic-btn logout-btn" style={{ textDecoration: 'none' }}>
+                <BoxArrowRight color="white" size={20} /> Log Out
+            </Link>
             <div className="social-media">
-                <Facebook size={32} className="social-icon" />
-                <Envelope size={32} className="social-icon" />
-                <Linkedin size={32} className="social-icon" />
+                <Link to="/Facebook_Link" className="social-icon" style={{ textDecoration: 'none' }}>
+                    <Facebook size={32} />
+                </Link>
+                <Link to="/Email_Link" className="social-icon" style={{ textDecoration: 'none' }}>
+                    <Envelope size={32} />
+                </Link>
+                <Link to="/Linkedin_Link" className="social-icon" style={{ textDecoration: 'none' }}>
+                    <Linkedin size={32} />
+                </Link>
             </div>
         </div>
     );
