@@ -1,6 +1,6 @@
 #For the server folder
 server/node_modules
-server/.env
+# After completing the dev phase, we should add server/.env to the .gitignore file
 
 #For the client folder
 # Logs
