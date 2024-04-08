@@ -95,7 +95,7 @@
   
   
   .refresh-btn button:hover {
-    background-color: #4CAF50;
+    opacity: 70%;
     transition: 0.2s ease;
   }
   
@@ -202,7 +202,11 @@
     text-decoration: underline;
   }
   
-  
+  .loading-screen {
+    text-align: center;
+    font-weight: bold;
+  }
+
   .rendered-list{
     margin: 0 auto;
     padding: 20px;

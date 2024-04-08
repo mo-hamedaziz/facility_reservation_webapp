@@ -1,21 +1,30 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const workoutRoutes = require("./routes/dashboardRoutes");
+const cors = require('cors');
+
+const {bookingRequestRoutes} = require ('./routes/bookingRequestRoutes');
 
 const port = process.env.PORT;
 
 const app = express();
 
 // Using middleware
+app.use(
+    cors({
+      origin: process.env.REACT_APP_BASE_URL,
+      methods: ["GET", "POST", "DELETE", "PATCH"],
+    })
+  );
 app.use(express.json());
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
 
-// Dashboard Routes
-app.use('/dashboard',workoutRoutes);
+// Routes
+// Booking Requests Routes
+app.use("/api/booking/request", bookingRequestRoutes);
 
 // Connect to DB
 console.log('Connecting to the database ...');

@@ -1,18 +1,24 @@
 import './RequestList.css'; 
 import { Link } from "react-router-dom";
-import useFetch from "./useFetch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Form from 'react-bootstrap/Form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Row, Col, Container } from 'react-bootstrap';
-import React, { useRef } from 'react'; 
+import axios from 'axios'; 
 
 const RequestList = () => {
     const [refresh, setRefresh] = useState(false); // State variable to trigger refresh
     const [selectedDate, setSelectedDate] = useState(new Date()); // State variable to store selected date
-    const {data:requests, isPending, error} = useFetch('http://localhost:3333/requests', refresh);
-    // Pass the 'refresh' state variable to the 'useFetch' hook
+    const [requests, setRequests] = useState([]); // State variable to store requests
+    const [isPending, setIsPending] = useState(true); // State variable to indicate loading state
+    const [error, setError] = useState(null); // State variable to store error
+    const allRef = useRef();
+    const pendingRef = useRef();
+    const approvedRef = useRef();
+    const deniedRef = useRef();
+
+    const locations = ['151', '153', '155', 'Salle Samsung', 'SL', 'Audito'];
 
     const handleRefresh = () => {
         setRefresh(!refresh); // Toggle the refresh state
@@ -21,14 +27,6 @@ const RequestList = () => {
     const handleDateChange = (date) => {
         setSelectedDate(date); // Update selected date
     };
-
-    const locations = ['151', '153', '155', 'Salle Samsung', 'SL', 'Audito'];
-
-    // Refs for each option
-    const allRef = useRef();
-    const pendingRef = useRef();
-    const approvedRef = useRef();
-    const deniedRef = useRef();
 
     // Function to toggle selected class for each option
     const toggleSelected = (ref) => {
@@ -43,7 +41,19 @@ const RequestList = () => {
     useEffect(() => {
         // Apply selected class to "All" option when component mounts
         toggleSelected(allRef);
-    }, []);
+        setRequests(null);
+        setIsPending(true);
+        // Fetch data from the backend API
+        axios.get('/api/booking/request/list')
+            .then(response => {
+                setRequests(response.data);
+                setIsPending(false);
+            })
+            .catch(error => {
+                setError(error.message);
+                setIsPending(false);
+            });
+    }, [refresh]); // Refresh when 'refresh' state changes
 
     return ( 
         <>
@@ -99,17 +109,17 @@ const RequestList = () => {
             <br /><br /><br />
             <Row className="fetching">
                 {error && <div>{error}</div>}
-                {isPending && <div>Loading ...</div>}
-                {requests && <h2 id="number-of-requests">Number of requests: {requests.length}</h2> }
+                {isPending && <h2 className='loading-screen'>Loading ...</h2>}
+                {requests && <h2 id="number-of-requests">Number of requests: {requests.length}</h2>}
                 {requests && 
                         <div className="rendered-list">
-                            {requests.map((request) => (
-                                <div className={`request-preview ${getRequestStatusClass(request.status)}`} key={request.id} title="Consult this request">
-                                    <Link to={`/request/${request.id}`}>
-                                        <h2>{request.eventName} ( {request.eventType} )</h2>
-                                        <p><span className="bold">Sent by: </span> {request.sender} - {request.clubName}</p>
-                                        <p><span className="bold">Date: </span>{ request.date } - { request.time }</p>
-                                        <p><span className="bold">Location: </span>{ request.classroom }</p>
+                            {requests.map((request, index) => (
+                                <div className={`request-preview ${getRequestStatusClass(request.status)}`} key={index} title="Consult this request">
+                                    <Link to={`/request/${request._id}`}>
+                                        <h2>{request._event.name} ( {request._event.type} )</h2>
+                                        <p><span className="bold">Sent by: </span> {request._sender.firstName} {request._sender.lastName} - {request._sender.clubName}</p>
+                                        <p><span className="bold">Date: </span>{ request._event.date } - { request._event.time }</p>
+                                        <p><span className="bold">Location: </span>{ request._requested_classroom.name }</p>
                                     </Link>
                                 </div>
                             ))}

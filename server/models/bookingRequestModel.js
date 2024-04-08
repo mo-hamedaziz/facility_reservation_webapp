@@ -1,19 +1,23 @@
 const mongoose = require('mongoose');
 
+require('./eventModel');
+require('./classroomsModel');
+require('./presidentsModel');
+
 const Schema = mongoose.Schema;
 
 const BookingRequestSchema = new Schema({
-    event: {
+    _event: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event',
         required: true
     },
-    sender: {
+    _sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'President',
         required: true
     },
-    requested_classroom: {
+    _requested_classroom: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classroom',
         required: true
@@ -30,16 +34,12 @@ const BookingRequestSchema = new Schema({
         type: String,
         required: true
     },
-    submissionTime: {
-        type: Date,
+    status: {
+        type: String,
         required: true
     },
     responseTime: {
         type: Date,
-        required: true
-    },
-    status: {
-        type: String,
         required: true
     },
 }, {timestamps:true});
