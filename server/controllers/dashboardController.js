@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const model = require("../models/Model");
+//const model = require("../models/Model");
 
 // Get president's dash
 const showPresidentDashboard = async (req, res) => {
