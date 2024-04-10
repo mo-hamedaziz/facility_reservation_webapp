@@ -23,7 +23,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route 
-              path='/requests'
+              path='/requests/list'
               element={<RequestList />}
             />
             <Route 

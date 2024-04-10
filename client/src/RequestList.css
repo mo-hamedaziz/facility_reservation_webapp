@@ -12,7 +12,6 @@
     margin: 0 auto;
   }
   
-  
   /* Styling for the Form.Select fields */
   .form-select {
     padding: 0.5rem 1rem;
@@ -43,6 +42,9 @@
     opacity: 1;
   }
   
+  #specific-day-selector:disabled{
+    opacity: 50%;
+  }
   
   /* Styling for the DatePicker input */
   .react-datepicker__input-container input {
@@ -195,6 +197,19 @@
     display: flex;
     align-self: end;
   }
+
+  .error-msg {
+    border: 2px solid var(--red);
+    border-radius: 8px;
+    color: var(--red);
+    padding: 20px 10px;
+    background-color: rgba(244, 67, 54, 0.1);
+    font-weight: bold;
+    width: fit-content;
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto;
+  }
   
   #number-of-requests {
     font-weight: bold;
@@ -260,5 +275,4 @@
   .denied-request {
     border-color: #F44336; /* Red color for denied request */
   }
-  
   
