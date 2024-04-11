@@ -68,7 +68,21 @@
 
 # Routes for Ines
 
-No routes specified.
+**POST /api/user/login**:
+- Handles user login
+  
+**POST /api/user/signup/request**:
+- Submits a signup request
+  
+**GET /api/user/profile**:
+- Retrieves profile details of the logged-in user
+  
+**PATCH /api/user/profile**:
+- Updates user profile (accepts an object with updated fields)
+  
+**PATCH /api/user/profile/profilePicture**:
+- Updates the user's profile picture
+
 
 # Routes for Ossama
 
