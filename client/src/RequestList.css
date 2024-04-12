@@ -197,29 +197,11 @@
     display: flex;
     align-self: end;
   }
-
-  .error-msg {
-    border: 2px solid var(--red);
-    border-radius: 8px;
-    color: var(--red);
-    padding: 20px 10px;
-    background-color: rgba(244, 67, 54, 0.1);
-    font-weight: bold;
-    width: fit-content;
-    max-width: 50%;
-    text-align: center;
-    margin: 0 auto;
-  }
   
   #number-of-requests {
     font-weight: bold;
     text-align: center;
     text-decoration: underline;
-  }
-  
-  .loading-screen {
-    text-align: center;
-    font-weight: bold;
   }
 
   .rendered-list{

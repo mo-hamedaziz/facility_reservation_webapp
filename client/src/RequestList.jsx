@@ -316,7 +316,7 @@ const RequestList = () => {
                 )}`}
                 title="Consult this request"
               >
-                <Link to={`/request/${request._id}`}>
+                <Link to={`/request/details?id=${request._id}`}>
                   <h2>
                     {request._event.name} ({request._event.type})
                   </h2>

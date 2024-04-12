@@ -74,6 +74,10 @@
     background-color: var(--blue);
   }
 
+  #download-details:hover{
+    opacity: 70%;
+  }
+
   #approve-req {
     background-color: var(--green);
   }

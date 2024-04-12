@@ -16,12 +16,43 @@ const getAllBookingRequests = async (req, res) => {
         // Send the populated requests as response
         res.status(200).json({ requests, locations });
         //console.log(res.data);
-    } catch (err) {
+    } catch (error) {
         // Handle errors
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
+const getSingleRequest = async (req, res) => {
+    try {
+        const request = await BookingRequest.findById(req.query.id).populate(['_event','_sender','_requested_classroom']);
+        if (!request){
+            res.status(404).json({ error: "This request was NOT FOUND on the server!" });
+        }
+        else {
+            res.status(200).json(request);
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Internal Error !" });
+    }
+}
+
+const changeRequestStatus = async (req, res) => {
+    try {
+        const request = await BookingRequest.findByIdAndUpdate(req.query.id, req.body, {new: true}).populate(['_event','_sender','_requested_classroom']);
+        if (!request){
+            res.status(404).json({ error: "This request was NOT FOUND on the server!" });
+        }
+        else {
+            res
+            res.status(200).json(request);
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Internal Error !" });
+    }
+}
+
 module.exports = {
-    getAllBookingRequests
+    getAllBookingRequests,
+    getSingleRequest,
+    changeRequestStatus
 };

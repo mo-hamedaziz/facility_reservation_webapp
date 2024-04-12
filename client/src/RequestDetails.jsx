@@ -1,97 +1,151 @@
-import './RequestDetails.css'; 
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import useFetch from "./useFetch";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./RequestDetails.css";
 
 const RequestDetails = () => {
-    const { id } = useParams();
-    const { data: request, isPending, error } = useFetch('http://localhost:3333/requests/' + id);
-    //const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [request, setRequest] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
-    const handleClick = async (action) => {
-        try {
-            // Perform the action (approve or deny) here
-            // For example:
-            if (action === 'approve') {
-                // Perform approve action
-                await approveRequest(id);
-            } else if (action === 'deny') {
-                // Perform deny action
-                await denyRequest(id);
-            }
-            // Refetch data after action is performed
-            refetch();
-        } catch (error) {
-            console.error('Error occurred when approving/denying the request:', error);
-        }
+  const searchParams = new URLSearchParams(useLocation().search);
+  const id = searchParams.get("id");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `/api/booking/request/details?id=${id}`
+        );
+        setRequest(response.data);
+      } catch (error) {
+        handleRequestError(error);
+      } finally {
+        setIsPending(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const handleRequestError = (error) => {
+    if (error.response) {
+      if (error.response.status === 404) {
+        setError("404: The request was NOT FOUND on the server !");
+      } else if (error.response.status === 500) {
+        setError("500: Internal Server Error !");
+      }
+    } else if (error.request) {
+      setError("Failed to fetch data !\nNo response received from the server.");
+    } else {
+      setError("Failed to fetch data !\nThis may be due to network issues.");
     }
+  };
 
-    const approveRequest = async (id) => {
-        // Implement API call to approve request
+  const handleUpdateRequest = async (action) => {
+    try {
+      const updatedStatus = action === "approve" ? "Approved" : "Denied";
+      await axios.patch(`/api/booking/request/details?id=${id}`, {
+        status: updatedStatus,
+      });
+      navigate("/request/list");
+    } catch (error) {
+      console.error("Error occurred while updating the request:", error);
+      setError(
+        "Error occurred while updating the request. Please try again later."
+      );
     }
+  };
 
-    const denyRequest = async (id) => {
-        // Implement API call to deny request
-    }
-
-    return (
-        <Container className="request-details">
-            <Row className="justify-content-center">
-                <Col xs={12} md={8}>
-                    {error && <h1>Request Not Found on the Server</h1> }
-                    {isPending && <div>Loading ...</div>}
-                    {request &&
-                        <>
-                        <article className='details'>
-                            <h1>{request.eventName}</h1>
-                            <p><strong>Sent By:</strong> {request.sender} - {request.clubName}</p>
-                            <p><strong>This request was submitted at:</strong> {request.submissionTime}</p>
-                            <p><strong>Status:</strong> {request.status}</p>
-                            <hr />
-                            <p><strong>Event Type:</strong> {request.eventType}</p>
-                            <p><strong>Event Date:</strong> {request.date}</p>
-                            <p><strong>Event Time:</strong> {request.time}</p>
-                            <p><strong>Participants Count:</strong> {request.participantsCount}</p>
-                            <hr />
-                            <h3>Event Description:</h3>
-                            <p id='evDesc'>{request.eventDescription}</p>
-                            <hr />
-                            <p><strong>Attachments:</strong> {request.attachment}</p>
-                            <hr />
-                            <strong>The club president has left this comment:</strong>
-                            <p id='comment'>{request.comment}</p>
-                            <br />
-                            
-                        </article>
-                        <div className="controls">
-                            <Button id='download-details'>Download request as PDF</Button>
-                            <div className="button-group">
-                                {request.status === 'Pending' && (
-                                    <>
-                                        <Button onClick={() => handleClick('approve')} id='approve-req'>Approve</Button>{' '}
-                                        <Button onClick={() => handleClick('deny')} id='deny-req'>Deny</Button>{' '}
-                                    </>
-                                )}
-                                {request.status === 'Approved' && (
-                                    <>
-                                        <Button disabled id='approve-req'>Approve</Button>{' '}
-                                        <Button onClick={() => handleClick('deny')} id='deny-req'>Deny</Button>{' '}
-                                    </>
-                                )}
-                                {request.status === 'Denied' && (
-                                    <>
-                                        <Button onClick={() => handleClick('approve')} id='approve-req'>Approve</Button>{' '}
-                                        <Button disabled id='deny-req'>Deny</Button>{' '}
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                        </>
-                    }
-                </Col>
-            </Row>
-        </Container>
-    );
-}
+  return (
+    <Container className="request-details">
+      <Row className="justify-content-center">
+        <Col xs={12} md={8}>
+          {error && <div className="error-msg">{error}</div>}
+          {isPending && <h2 className="loading-screen">Loading ...</h2>}
+          {
+            <button
+              className="go-back-to-list-btn"
+              onClick={() => navigate("/request/list")}
+            >
+              <img src="/images/leftArrow.svg" alt="Go back to the list" />
+              Go back to the list
+            </button>
+          }
+          {request && (
+            <>
+              <article className="details">
+                <h1>{request._event.name}</h1>
+                <p>
+                  <strong>Sent By:</strong> {request._sender.firstName}{" "}
+                  {request._sender.lastName}
+                </p>
+                <p>
+                  <strong>Club Name: </strong>
+                  {request._sender.clubName}
+                </p>
+                <p>
+                  <strong>This request was submitted at:</strong>{" "}
+                  {new Date(request.createdAt).toLocaleString("en-GB")}
+                </p>
+                <p>
+                  <strong>Status: </strong> {request.status}
+                </p>
+                <hr />
+                <p>
+                  <strong>Event Type:</strong> {request._event.type}
+                </p>
+                <p>
+                  <strong>Event Date:</strong>{" "}
+                  {new Date(request._event.date).toLocaleDateString("en-GB")}
+                </p>
+                <p>
+                  <strong>Event Duration:</strong> {request._event.time}
+                </p>
+                <p>
+                  <strong>Participants Count:</strong>{" "}
+                  {request._event.number_of_participants}
+                </p>
+                <hr />
+                <h3>Event Description:</h3>
+                <p id="evDesc">{request._event.description}</p>
+                <hr />
+                <p>
+                  <strong>Attachments:</strong> {request.attachment} (Feature to
+                  be added soon).
+                </p>
+                <hr />
+                <strong>The club president has left this comment:</strong>
+                <p id="comment">{request.comment}</p>
+                <br />
+              </article>
+              <div className="controls">
+                <Button id="download-details">Download request as PDF</Button>
+                <div className="button-group">
+                  <Button
+                    onClick={() => handleUpdateRequest("approve")}
+                    disabled={request.status === "Approved"}
+                    id="approve-req"
+                  >
+                    Approve
+                  </Button>{" "}
+                  <Button
+                    onClick={() => handleUpdateRequest("deny")}
+                    disabled={request.status === "Denied"}
+                    id="deny-req"
+                  >
+                    Deny
+                  </Button>{" "}
+                </div>
+              </div>
+            </>
+          )}
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default RequestDetails;
