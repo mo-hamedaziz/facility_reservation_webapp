@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 
 const {bookingRequestRoutes} = require ('./routes/bookingRequestRoutes');
+const {presidentsRoutes} = require ('./routes/presidentsRoutes');
 
 const port = process.env.PORT;
 
@@ -25,6 +26,9 @@ app.use((req, res, next) => {
 // Routes
 // Booking Requests Routes
 app.use("/api/booking/request", bookingRequestRoutes);
+
+// Presidents Routes
+app.use("/api/users/president", presidentsRoutes);
 
 // Connect to DB
 console.log('Connecting to the database ...');

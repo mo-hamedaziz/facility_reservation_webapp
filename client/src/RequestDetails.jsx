@@ -13,22 +13,19 @@ const RequestDetails = () => {
   const searchParams = new URLSearchParams(useLocation().search);
   const id = searchParams.get("id");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `/api/booking/request/details?id=${id}`
-        );
+  const fetchData = () => {
+    setIsPending(true);
+    axios
+      .get(`/api/booking/request/details?id=${id}`)
+      .then((response) => {
         setRequest(response.data);
-      } catch (error) {
-        handleRequestError(error);
-      } finally {
+        setError(null);
+      })
+      .catch(handleRequestError)
+      .finally(() => {
         setIsPending(false);
-      }
-    };
-
-    fetchData();
-  }, [id]);
+      });
+  };
 
   const handleRequestError = (error) => {
     if (error.response) {
@@ -58,6 +55,10 @@ const RequestDetails = () => {
       );
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
   return (
     <Container className="request-details">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState} from 'react';
 import './SignupRequestPresidentListSelector.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import PresidentList from './PresidentList';

@@ -29,7 +29,7 @@
 **POST /api/user/requests/create**:
 - If you are a logged-in president, you can create a new request.
 
-**GET /api/users/presidents**:
+**GET /api/users/president/list**:
 - If you are an admin, then this page will be visible for you and will display the full list of registered presidents. 
 - This request will communicate with the presidents collection.
 
