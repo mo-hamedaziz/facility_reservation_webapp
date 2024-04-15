@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import "./Login.css";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("guest");
+  const [userType, setUserType] = useState("clubPresident");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Ajoutez ici la logique pour gérer la soumission du formulaire de connexion
-    console.log("Login:", email, password, userType);
+
+    // Envoi de la requête de connexion avec axios
+    try {
+      const response = await axios.post("/api/user/login", {
+        email,
+        password,
+        userType,
+      });
+
+      if (!response.data) {
+        throw new Error("Invalid credentials");
+      }
+
+      // Redirection vers la page appropriée après une connexion réussie
+      if (userType === "admin") {
+        history.push("/admin-home");
+      } else if (userType === "clubPresident") {
+        history.push("/club-president-home");
+      }
+    } catch (error) {
+      console.error("Login error:", error.message);
+    }
   };
 
   const handleForgotPassword = () => {
-    // Ajoutez ici la logique pour gérer le lien "Forgot your password?"
     console.log("Forgot your password?");
   };
 

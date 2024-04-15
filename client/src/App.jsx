@@ -1,15 +1,13 @@
 import React from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import Navbar from "./Navbar";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path="signup" element={<SignUp />} />
           <Route
@@ -20,7 +18,6 @@ function App() {
               </div>
             }
           />
-
           <Route path="AccountDetails" element={<ProfilePage />} />
           <Route
             path="*"
@@ -38,3 +35,5 @@ function App() {
 }
 
 export default App;
+// <Route path="adminHome" element={<AdminHome />} />
+// <Route path="clubpresidentHome" element={<ClubPresidentHome />}

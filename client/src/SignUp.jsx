@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./signup.css"; // Importez le fichier CSS pour le style du SignUp
+import "./signup.css";
+import axios from "axios";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -10,21 +11,29 @@ function SignUp() {
   const [clubName, setClubName] = useState("");
   const [startMandate, setStartMandate] = useState("");
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    // Ajoutez ici la logique pour gérer la soumission du formulaire de sign up
-    console.log(
-      "Sign Up:",
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      cin,
-      clubName,
-      startMandate
-    );
-  };
+    try {
+      const response = await axios.post("/api/user/signup", {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        cin,
+        clubName,
+        startMandate,
+      });
 
+      if (!response.data) {
+        throw new Error("Sign up failed");
+      }
+
+      console.log("Sign up successful");
+      // Redirection vers une page de confirmation ou autre
+    } catch (error) {
+      console.error("Sign up error:", error.message);
+    }
+  };
   return (
     <div className="signup-container">
       <h1 className="signup-heading">Sign Up</h1>
