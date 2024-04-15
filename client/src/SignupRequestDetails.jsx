@@ -1,140 +1,218 @@
-import './RequestDetails.css';
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
-import useFetch from "./useFetch";
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Modal, Button } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
-const RequestDetails = () => {
-    const navigate= useNavigate();
+const SignupRequestDetails = () => {
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(useLocation().search);
+  const id = searchParams.get("id");
 
-    const { id } = useParams();
-    const { data: signup_request, isPending, error } = useFetch('http://localhost:3333/signup_requests/' + id);
+  const [request, setRequest] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
+  const [showDenyConfirmation, setShowDenyConfirmation] = useState(false);
+  const [showApproveConfirmation, setShowApproveConfirmation] = useState(false);
 
-    const { data: presidents } = useFetch('http://localhost:3333/presidents');
-    const isPresidentExists = presidents && presidents.some(president => president.clubName === signup_request?.clubName);
+  const fetchData = () => {
+    setIsPending(true);
+    axios
+      .get(`/api/users/signup/request/details?id=${id}`)
+      .then((response) => {
+        setRequest(response.data);
+        setError(null);
+      })
+      .catch(handleRequestError)
+      .finally(() => {
+        setIsPending(false);
+      });
+  };
 
-    const [showConfirmation, setShowConfirmation] = useState(false);
+  const handleRequestError = (error) => {
+    if (error.response) {
+      setError(
+        `Error ${error.response.status}: ${
+          error.response.data.error || error.response.data
+        }`
+      );
+    } else if (error.request) {
+      setError("Failed to fetch data! No response received from the server.");
+    } else {
+      setError("Failed to fetch data! This may be due to network issues.");
+    }
+  };
 
-    const handleDeny = () => {
-        // Show confirmation modal before deleting
-        setShowConfirmation(true);
-    };
+  const handleDenyRequest = () => setShowDenyConfirmation(true);
+  const handleApproveRequest = () => setShowApproveConfirmation(true);
 
-    const handleApprove = async () => {
-        try {
-            // Fetch the president's data associated with the signup request
-            const presidentData = {
-                firstName: signup_request.firstName,
-                lastName: signup_request.lastName,
-                clubName: signup_request.clubName,
-                email: signup_request.email,
-                phoneNumber: signup_request.phoneNumber,
-            };
+  const handleConfirm = (approved) => {
+    setShowApproveConfirmation(false);
+    setShowDenyConfirmation(false);
+    setIsPending(true);
+    if (approved) {
+      const newPresident = {
+        firstName: request.firstName,
+        lastName: request.lastName,
+        cin: request.cin,
+        phoneNumber: request.phoneNumber,
+        email: request.email,
+        password: "",
+        clubName: request.clubName,
+      };
+      axios
+        .post("/api/users/president/add", newPresident)
+        .then((response) => {
+          console.log("President added successfully");
+        })
+        .catch((error) => {
+          console.error("Error adding president:", error);
+        });
+    }
+    axios
+      .delete(`/api/users/signup/request/delete?id=${id}`)
+      .then(() => {
+        navigate("/users");
+      })
+      .catch((error) => {
+        handleRequestError(error);
+      })
+      .finally(() => {
+        setIsPending(false);
+      });
+  };
 
-            // Send a POST request to insert the new president
-            const response = await fetch('http://localhost:3333/presidents', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(presidentData)
-            });
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
-            if (!response.ok) {
-                throw new Error('Failed to insert the new account');
-            }
-
-            // Delete the signup request from the list of signup requests
-            await fetch(`http://localhost:3333/signup_requests/${id}`, {
-                method: 'DELETE'
-            });
-
-            // Navigate to the desired page
-            navigate('/users');
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-
-    const confirmDenyRequest = () => {
-        fetch(
-            `http://localhost:3333/signup_requests/${id}`, {
-            method: 'DELETE',
-        }
-        );
-        navigate('/users');
-        setShowConfirmation(false); // Close the confirmation modal
-    };
-
-    return (
-        <Container className="request-details">
-            <Row className="justify-content-center">
-                <Col xs={12} md={8}>
-                    {error && <h1>Request Not Found on the Server</h1>}
-                    {isPending && <div>Loading ...</div>}
-                    {signup_request &&
-                        <>
-                            <article className='details'>
-                                <h2><strong>Sent By: </strong> {signup_request.firstName} {signup_request.lastName}</h2><br />
-                                <p><strong>Club Name: </strong> {signup_request.clubName}</p>
-                                <p><strong>Club members count: </strong> to be added soon</p>
-                                <p><strong>This request was submitted at: </strong> {new Date(signup_request.submissionTime).toLocaleString()}</p>
-                                <hr />
-                                <h5><strong>Sender Info:</strong></h5>
-                                <p><strong>Start of Mandate: </strong> {signup_request.startOfMandate}</p>
-                                <p><strong>Email: </strong> {signup_request.email}</p>
-                                <p><strong>Phone Number: </strong> {signup_request.phoneNumber}</p>
-                                <p><strong>Class: </strong> RT3 - to be added soon</p>
-                                <hr />
-                                <p><strong>Attachments:</strong> to be added soon</p>
-                                <hr />
-                                <strong>The club president has left this comment:</strong>
-                                <p id='comment'>{signup_request.comment}</p>
-                                <hr />
-                                <div className="leave-comment">
-                                    <strong>Leave a comment:</strong><br />
-                                    <textarea
-                                        name="comment-field"
-                                        id="comment-field"
-                                    ></textarea>
-                                </div>
-                                <br />
-                                {isPresidentExists &&
-                                    <div className='warning'>
-                                        There is a registered account within the same club already !
-                                    </div>
-                                }
-                            </article>
-                            <div className="controls">
-                                <div className="button-group">
-                                    <button id='approve-req' onClick={handleApprove}>Approve</button>
-                                    <button id='deny-req' onClick={handleDeny}>Deny</button>
-                                </div>
-                                <p>*The request sender will be notified by your response.</p>
-                            </div>
-                        </>
-                    }
+  return (
+    <Container fluid="md" className="rendering-details">
+      <Row>
+        {error && <div className="error-msg">{error}</div>}
+        {isPending && <h2 className="loading-screen">Loading ...</h2>}
+        {request && (
+          <>
+            <Row className="details-card">
+              <Row>
+                <Col xs={2} className="back-to-list">
+                  <img
+                    onClick={() => navigate("/users")}
+                    src="/images/leftArrow.svg"
+                    alt="back to list"
+                  />
                 </Col>
+              </Row>
+              <Row className="details">
+                <Col lg={3} md={5} className="picture-and-name">
+                  <img
+                    className="detailed-profile-picture"
+                    src="/images/anonymousProfilePicture.svg"
+                    alt="Profile Picture"
+                  />
+                  <h2>
+                    {request.firstName} {request.lastName}
+                  </h2>
+                </Col>
+                <Col lg={5} md={5} className="profile-data">
+                  <h3>
+                    <strong>Club Name:</strong> {request.clubName}
+                  </h3>
+                  <h3>
+                    <strong>CIN:</strong> {request.cin}
+                  </h3>
+                  <h3>
+                    <strong>Phone Number:</strong> {request.phoneNumber}
+                  </h3>
+                  <h3>
+                    <strong>Email:</strong> {request.email}
+                  </h3>
+                  <h5 id="expiration-date">
+                    This request was submitted on{" "}
+                    {new Date(request.createdAt).toLocaleDateString("en-GB")} at{" "}
+                    {new Date(request.createdAt).toLocaleTimeString("en-GB")}
+                  </h5>
+                </Col>
+                <Col className="controls">
+                  <button id="deny-request" onClick={handleDenyRequest}>
+                    Deny Request
+                  </button>
+                  <button id="approve-request" onClick={handleApproveRequest}>
+                    Approve Request
+                  </button>
+                </Col>
+              </Row>
             </Row>
-            {/* Confirmation Modal */}
-            <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title><h2>Confirmation</h2></Modal.Title>
-                </Modal.Header>
-                <Modal.Body><strong>Are you sure you want to deny this request?</strong><br />If so, this request will be deleted.<br />*The request sender will be notified via email.</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowConfirmation(false)}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={confirmDenyRequest}>
-                        Deny Request
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </Container>
-    );
-}
 
-export default RequestDetails;
+            {/* Modal to confirm denying the request */}
+            <Modal
+              show={showDenyConfirmation}
+              onHide={() => setShowDenyConfirmation(false)}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  <h2>Confirmation</h2>
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <strong>
+                  Are you sure you want to deny this signup request?
+                </strong>
+                <br />
+                *The request sender will be notified via email.
+                <br />
+                This request will be deleted permanently from the database.
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowDenyConfirmation(false)}
+                >
+                  Cancel
+                </Button>
+                <Button variant="danger" onClick={() => handleConfirm(false)}>
+                  Confirm
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            {/* Modal to confirm approving the request */}
+            <Modal
+              show={showApproveConfirmation}
+              onHide={() => setShowApproveConfirmation(false)}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  <h2>Confirmation</h2>
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <strong>
+                  Are you sure you want to approve this signup request?
+                </strong>
+                <br />
+                *The request sender will be notified via email.
+                <br />
+                The sender will be added to the database as a club president,
+                and the system will automatically assign a random password to
+                them.
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowApproveConfirmation(false)}
+                >
+                  Cancel
+                </Button>
+                <Button variant="success" onClick={() => handleConfirm(true)}>
+                  Confirm
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+        )}
+      </Row>
+    </Container>
+  );
+};
+
+export default SignupRequestDetails;

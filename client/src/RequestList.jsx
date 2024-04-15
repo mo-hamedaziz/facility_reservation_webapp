@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import DatePicker from "react-datepicker";
@@ -6,7 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "react-timeago";
-
 import "./RequestList.css";
 
 const RequestList = () => {
@@ -20,29 +19,20 @@ const RequestList = () => {
     error: null,
   });
   const [specificDaySwitch, setSpecificDaySwitch] = useState(false);
-
-  const allRef = useRef();
-  const pendingRef = useRef();
-  const approvedRef = useRef();
-  const deniedRef = useRef();
+  const [selectedStatus, setSelectedStatus] = useState("all");
 
   const handleRefresh = () => {
     setRefresh(!refresh);
   };
 
   const handleSpecificDaySwitchChange = (e) => {
-    const isChecked = e.target.checked; // Determine if the switch is checked or not
-
-    setSpecificDaySwitch(isChecked); // Update the state based on the switch state
-
-    // Filter requests based on the selected date if the switch is checked
+    const isChecked = e.target.checked;
+    setSpecificDaySwitch(isChecked);
     filterRequestsByDay(isChecked ? selectedDate : null);
   };
 
   const handleSelectSpecificDay = (date) => {
     setSelectedDate(date);
-
-    // Filter requests based on the selected date if the switch is on
     if (specificDaySwitch) {
       filterRequestsByDay(date);
     }
@@ -52,12 +42,10 @@ const RequestList = () => {
     const filteredRequests = date
       ? data.originalRequests.filter(
           (request) =>
-            new Date(request._event.date).toLocaleDateString("en-GB") ===
+            new Date(request.event.date).toLocaleDateString("en-GB") ===
             new Date(date).toLocaleDateString("en-GB")
         )
       : data.originalRequests;
-
-    // Update the state with the filtered requests
     setData({
       ...data,
       filteredRequests: filteredRequests,
@@ -65,40 +53,33 @@ const RequestList = () => {
   };
 
   const handleSortChange = (sortByOption) => {
-    document.getElementById("specific-location-selector").value =
-      "any-location";
-    setSpecificDaySwitch(false);
-
+    setSelectedStatus("all");
     const sortedRequests = [...data.originalRequests];
-
     switch (sortByOption) {
       case "event-date":
         sortedRequests.sort(
-          (a, b) => new Date(a._event.date) - new Date(b._event.date)
+          (a, b) => new Date(a.event.date) - new Date(b.event.date)
         );
         break;
       case "event-type":
-        sortedRequests.sort((a, b) =>
-          a._event.type.localeCompare(b._event.type)
-        );
+        sortedRequests.sort((a, b) => a.event.type.localeCompare(b.event.type));
         break;
       case "club-name":
         sortedRequests.sort((a, b) =>
-          a._sender.clubName.localeCompare(b._sender.clubName)
+          a.sender.clubName.localeCompare(b.sender.clubName)
         );
         break;
       case "location":
         sortedRequests.sort((a, b) =>
-          a._requested_classroom.name.localeCompare(b._requested_classroom.name)
+          a.requested_classroom.name.localeCompare(b.requested_classroom.name)
         );
         break;
       default:
         sortedRequests.sort(
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
         break;
     }
-
     setData({
       ...data,
       filteredRequests: sortedRequests,
@@ -109,35 +90,18 @@ const RequestList = () => {
     let filteredRequests = data.originalRequests;
     if (selectedLocation !== "any-location") {
       filteredRequests = data.originalRequests.filter(
-        (request) => request._requested_classroom.name === selectedLocation
+        (request) => request.requested_classroom.name === selectedLocation
       );
     }
-
     setData({
       ...data,
       filteredRequests: filteredRequests,
     });
   };
 
-  const toggleSelected = (ref, showOption) => {
-    [allRef, pendingRef, approvedRef, deniedRef].forEach((r) =>
-      r.current.classList.remove("selected")
-    );
-    ref.current.classList.add("selected");
-    useAxiosGet(showOption);
-
-    // Set default values for all Form.Select elements
-    const selects = document.querySelectorAll(".form-select");
-    selects.forEach((select) => {
-      // Find the default option with the value equal to "any-location" or "submission-time"
-      const defaultOption =
-        select.querySelector("option[value='any-location']") ||
-        select.querySelector("option[value='submission-time']");
-      if (defaultOption) {
-        defaultOption.selected = true; // Select the default option
-      }
-    });
-    // Set the specific day switch to be off
+  const toggleSelected = (status) => {
+    setSelectedStatus(status);
+    useAxiosGet(status);
     setSpecificDaySwitch(false);
   };
 
@@ -160,7 +124,6 @@ const RequestList = () => {
       isLoading: true,
       error: null,
     });
-
     const apiUrl = `/api/booking/request/list?show=${showOption}`;
     axios
       .get(apiUrl)
@@ -183,7 +146,7 @@ const RequestList = () => {
   };
 
   useEffect(() => {
-    toggleSelected(allRef, "all");
+    useAxiosGet(selectedStatus);
   }, [refresh]);
 
   return (
@@ -196,8 +159,8 @@ const RequestList = () => {
                 type="switch"
                 id="select-specific-day-switch"
                 label="Select a specific day:"
-                checked={specificDaySwitch} // Bind the checked state to the switch state
-                onChange={handleSpecificDaySwitchChange} // Handle switch change
+                checked={specificDaySwitch}
+                onChange={handleSpecificDaySwitchChange}
               />
             </Form.Label>
             <DatePicker
@@ -251,28 +214,10 @@ const RequestList = () => {
               {["all", "pending", "approved", "denied"].map((status, index) => (
                 <Col
                   key={index}
-                  ref={
-                    status === "all"
-                      ? allRef
-                      : status === "pending"
-                      ? pendingRef
-                      : status === "approved"
-                      ? approvedRef
-                      : deniedRef
-                  }
-                  className={`option ${status}-request`}
-                  onClick={() =>
-                    toggleSelected(
-                      status === "all"
-                        ? allRef
-                        : status === "pending"
-                        ? pendingRef
-                        : status === "approved"
-                        ? approvedRef
-                        : deniedRef,
-                      status
-                    )
-                  }
+                  className={`option ${status}-request ${
+                    status === selectedStatus ? "selected" : ""
+                  }`}
+                  onClick={() => toggleSelected(status)}
                 >
                   {status.charAt(0).toUpperCase() + status.slice(1)}
                 </Col>
@@ -281,18 +226,17 @@ const RequestList = () => {
           </Col>
           <Col className="note">
             <p>
-              <strong>*Note:</strong> When a -sorting- option is selected, it
-              will automatically disabled all the filtering by day and by
-              location.
+              <strong>*Note:</strong> When a sorting option is selected, it will
+              automatically disable all the filtering by day and by location.
             </p>
           </Col>
         </Row>
         <Row>
           <Col xs={6}>
-          <p>
-            <strong>*Note:</strong> When a -show- option is selected, it will
-            automatically disable sorting and filtering.
-          </p>
+            <p>
+              <strong>*Note:</strong> When a show option is selected, it will
+              automatically disable sorting and filtering.
+            </p>
           </Col>
           <Col></Col>
         </Row>
@@ -306,11 +250,11 @@ const RequestList = () => {
             Number of requests: {data.filteredRequests.length}
           </h2>
         )}
-        {data.filteredRequests && (
+        {!data.isLoading && !data.error && data.filteredRequests && (
           <div className="rendered-list">
-            {data.filteredRequests.map((request, index) => (
+            {data.filteredRequests.map((request) => (
               <div
-                key={index}
+                key={request._id}
                 className={`request-preview ${getRequestStatusClass(
                   request.status
                 )}`}
@@ -318,21 +262,21 @@ const RequestList = () => {
               >
                 <Link to={`/request/details?id=${request._id}`}>
                   <h2>
-                    {request._event.name} ({request._event.type})
+                    {request.event.name} ({request.event.type})
                   </h2>
                   <p>
                     <span className="bold">Sent by:</span>{" "}
-                    {request._sender.firstName} {request._sender.lastName} -{" "}
-                    {request._sender.clubName}
+                    {request.sender.firstName} {request.sender.lastName} -{" "}
+                    {request.sender.clubName}
                   </p>
                   <p>
                     <span className="bold">Date:</span>{" "}
-                    {new Date(request._event.date).toLocaleDateString("en-GB")}{" "}
-                    ({request._event.time})
+                    {new Date(request.event.date).toLocaleDateString("en-GB")} (
+                    {request.event.time})
                   </p>
                   <p>
                     <span className="bold">Location:</span>{" "}
-                    {request._requested_classroom.name}
+                    {request.requested_classroom.name}
                   </p>
                   <p className="time-ago">
                     *Was submitted{" "}

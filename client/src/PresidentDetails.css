@@ -1,9 +1,9 @@
 .rendering-details {
-    margin: 50px auto;
+    margin: 20px auto;
   }
   
 .details-card {
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 10px 10px #ccc;
     padding: 10px;
@@ -74,6 +74,10 @@
     word-wrap: break-word;
 }
 
+.profile-data > #expiration-date {
+  color: var(--darkGray);
+}
+
 .details > .controls {
     text-align: right;
     align-self: flex-end;
@@ -81,9 +85,13 @@
 }
 
 .details > .controls > #view-requests {
-    background-color: #008DDA;
+    background-color: var(--blue);
 }
 
-.details > .controls > #delete-user {
-    background-color: #F44336;
+.details > .controls > #delete-user, #deny-request{
+    background-color: var(--red);
+}
+
+.details > .controls > #approve-request{
+  background-color: var(--green);
 }

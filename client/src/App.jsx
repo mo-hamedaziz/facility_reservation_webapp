@@ -32,13 +32,10 @@ function App() {
               path="/users"
               element={<SignupRequestPresidentListSelector />}/>
             <Route 
-              path="/account/president/:id"
+              path="/users/president/details"
               element={<PresidentDetails />}/>
             <Route 
-              path="/requests/user/:id"
-              element={<PresidentRequests />}/>
-            <Route 
-              path="/signups/requests/:id"
+              path="/users/signup/request/details"
               element={<SignupRequestDetails />}/>
             <Route 
               path='*'

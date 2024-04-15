@@ -7,17 +7,17 @@ require('./presidentsModel');
 const Schema = mongoose.Schema;
 
 const BookingRequestSchema = new Schema({
-    _event: {
+    event: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event',
         required: true
     },
-    _sender: {
+    sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'President',
         required: true
     },
-    _requested_classroom: {
+    requested_classroom: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classroom',
         required: true

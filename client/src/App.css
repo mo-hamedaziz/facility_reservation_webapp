@@ -4,8 +4,10 @@
 
 /* base styles */
 :root {
+  --white: #FEFEE2;
   --blue: #008DDA;
   --gray: #ccc;
+  --darkGray: #A9A9A9;
   --red: #F44336;
   --green: #4CAF50;
   --yellow: #FFC107;

@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const {bookingRequestRoutes} = require ('./routes/bookingRequestRoutes');
 const {presidentsRoutes} = require ('./routes/presidentsRoutes');
+const {signupRequestsRoutes} = require('./routes/signupRequestsRoutes');
 
 const port = process.env.PORT;
 
@@ -30,6 +31,9 @@ app.use("/api/booking/request", bookingRequestRoutes);
 // Presidents Routes
 app.use("/api/users/president", presidentsRoutes);
 
+// Signup requests Routes
+app.use("/api/users/signup/request", signupRequestsRoutes);
+
 // Connect to DB
 console.log('Connecting to the database ...');
 mongoose.connect(process.env.MONGO_URI)
@@ -40,5 +44,5 @@ mongoose.connect(process.env.MONGO_URI)
         });
     })
     .catch((err) => {
-        console.log(err);
+        console.log("ERROR OCCURED !\n"+err);
     });
