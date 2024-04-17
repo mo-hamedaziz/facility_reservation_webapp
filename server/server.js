@@ -3,9 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const userLoginRoutes = require("./routes/userLoginRoutes");
-const userSignUpRoutes = require("./routes/userSignUpRoutes");
-const profileRoutes = require("./routes/profileRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const port = process.env.PORT;
 const app = express();
@@ -23,9 +21,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/user", userLoginRoutes);
-app.use("/api/user", userSignUpRoutes);
-app.use("/api/user", profileRoutes);
+app.use("/api/user", userRoutes);
 
 // Connect to DB
 console.log("Connecting to the database ...");

@@ -1,6 +1,6 @@
 const TemporaryUser = require("../models/temporaryUserModel");
 
-exports.signupUser = async (req, res) => {
+userSignup = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -33,3 +33,5 @@ exports.signupUser = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+module.exports = userSignup;

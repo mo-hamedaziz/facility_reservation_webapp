@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
-exports.loginUser = async (req, res) => {
+userLogin = async (req, res) => {
   const { email, password, userType } = req.body;
 
   try {
@@ -26,3 +26,5 @@ exports.loginUser = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+module.exports = userLogin;

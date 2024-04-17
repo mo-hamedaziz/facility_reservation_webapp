@@ -11,7 +11,6 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Envoi de la requête de connexion avec axios
     try {
       const response = await axios.post("/api/user/login", {
         email,
@@ -92,7 +91,7 @@ function Login() {
         </button>
         <div>
           <span>
-            Don't have an account? <Link to="/signup">Sign Up</Link>
+            Don t have an account? <Link to="/signup">Sign Up</Link>
           </span>
         </div>
       </form>

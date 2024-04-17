@@ -11,22 +11,16 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route 
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route
-            path="login"
-            element={<Login />}
-          />
-          <Route 
             path="/dashboard/president"
-            element={<Dashboard userType={'president'}/>}
+            element={<Dashboard userType={"president"} />}
           />
-          <Route 
+          <Route
             path="/dashboard/admin"
-            element={<Dashboard userType={'admin'}/>}
+            element={<Dashboard userType={"admin"} />}
           />
           <Route path="AccountDetails" element={<ProfilePage />} />
           <Route

@@ -11,28 +11,31 @@ function SignUp() {
   const [clubName, setClubName] = useState("");
   const [startMandate, setStartMandate] = useState("");
 
-  const handleSignUp = async (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/api/user/signup", {
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        cin,
-        clubName,
-        startMandate,
+
+    const newSignupRequest = {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      cin,
+      clubName,
+      startMandate,
+    };
+
+    axios
+      .post("/api/user/signup", newSignupRequest)
+      .then((response) => {
+        if (!response.data) {
+          throw new Error("Sign up failed");
+        }
+        console.log("Sign up successful");
+        // Redirect to a confirmation page or perform other actions
+      })
+      .catch((error) => {
+        console.error("Sign up error:", error.message);
       });
-
-      if (!response.data) {
-        throw new Error("Sign up failed");
-      }
-
-      console.log("Sign up successful");
-      // Redirection vers une page de confirmation ou autre
-    } catch (error) {
-      console.error("Sign up error:", error.message);
-    }
   };
 
   return (
