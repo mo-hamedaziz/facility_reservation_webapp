@@ -56,7 +56,7 @@ const SignupRequestDetails = () => {
         cin: request.cin,
         phoneNumber: request.phoneNumber,
         email: request.email,
-        password: "",
+        password: "pass123",
         clubName: request.clubName,
       };
       axios

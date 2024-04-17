@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const President = require("../models/presidentsModel");
 const BookingRequest = require("../models/bookingRequestModel");
 
@@ -26,6 +27,7 @@ const getSinglePresident = async (req, res) => {
   }
 };
 
+// Delete a president
 const deleteSinglePresident = async (req, res) => {
   const presidentId = req.query.id;
 
@@ -53,11 +55,17 @@ const deleteSinglePresident = async (req, res) => {
   }
 };
 
+// Add a president after approving the signup request
 const addPresident = async (req, res) => {
   try {
-    req.body.password = "NewPassword123";
-    const { firstName, lastName, cin, phoneNumber, email, password, clubName } =
-      req.body;
+    const { firstName, lastName, cin, phoneNumber, email, clubName } = req.body;
+
+    const generatedPassword = generateRandomPassword(12);
+    console.log(generatedPassword);
+    // const password = req.body.password; // Extract password from req.body
+
+    // Hash the password using bcrypt
+    const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
     // Create a new instance of President model with provided data
     const newPresident = new President({
@@ -66,7 +74,7 @@ const addPresident = async (req, res) => {
       cin,
       phoneNumber,
       email,
-      password,
+      password: hashedPassword, // Store the hashed password in the database
       clubName,
     });
 
@@ -84,6 +92,17 @@ const handleServerError = (res, error) => {
   console.error("Internal Server Error:", error);
   res.status(500).json({ error: "Internal Server Error" });
 };
+
+// Define a function to generate a random password
+function generateRandomPassword(length) {
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+  }
+  return password;
+}
 
 module.exports = {
   getAllPresidents,
