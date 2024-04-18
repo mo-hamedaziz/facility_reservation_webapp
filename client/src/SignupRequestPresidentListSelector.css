@@ -1,0 +1,111 @@
+.options-list {
+    max-width: 80%;
+    margin: 0 auto;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+}
+
+.option {
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.selected{
+    background-color: #4CAF50;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.option-output{
+    margin-top: 20px;
+}
+
+/* List styling */
+.fetching {
+    display: flex;
+    flex-direction: column;
+}
+
+.rendered-list {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 20px;
+    max-height: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 70%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.rendered-list::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.preview {
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 20px 40px;
+    border-bottom: 7px solid #4CAF50;
+    transition: transform 0.3s ease;
+}
+
+.preview:hover {
+    transform: translateY(-5px);
+}
+
+.preview p {
+    margin: 0;
+}
+
+
+.preview * {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-picture {
+    align-self: start;
+}
+
+.profile-picture img {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 40px;
+}
+
+.manage {
+    background-color: #008DDA;
+    align-self: flex-end;
+    border: none;
+    border-radius: 16px;
+    padding: 0 20px;
+    max-width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.manage:hover {
+    opacity: 90%;
+    transform: scale(1.1);
+}
+
+.manage .manage-label {
+    color: white;
+    font-weight: bold;
+    align-self: center;
+}
+
+.manage-arrow>img {
+    height: 30px;
+}
+
+.manage-label,
+.manage-arrow {
+    max-width: fit-content;
+    padding: 0;
+    margin: 0 5px;
+}

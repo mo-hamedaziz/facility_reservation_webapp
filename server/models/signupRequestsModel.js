@@ -30,10 +30,6 @@ const SignupRequestSchema = new Schema ({
     email: {
         type: String,
         required: true
-    },
-    status: {
-        type: String,
-        required: true
     }
 }, {timestamps:true});
 

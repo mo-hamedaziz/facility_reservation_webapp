@@ -1,0 +1,260 @@
+/* Request list filtering style */
+
+.filtering {
+    padding: 20px 20px 5px 20px;
+    margin-bottom: 20px; 
+    background-color: white;
+    border: 3px solid #16C79A;
+    border-radius: 10px;
+  }
+  
+  .filtering div{
+    margin: 0 auto;
+  }
+  
+  /* Styling for the Form.Select fields */
+  .form-select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  /* Hover state */
+  .form-select:hover {
+    border-color: #16C79A;
+  }
+  
+  /* Focus state */
+  .form-select:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #16C79A;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Disabled state */
+  .form-select:disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+  }
+  
+  #specific-day-selector:disabled{
+    opacity: 50%;
+  }
+  
+  /* Styling for the DatePicker input */
+  .react-datepicker__input-container input {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .react-datepicker__input-container input:hover {
+    border-color: #16C79A;
+  }
+  
+  .react-datepicker__input-container input:focus {
+    border-color: #16C79A !important; /* Blue border color when focused */
+  }
+  
+  /* Styling for the DatePicker selected day */
+  .react-datepicker__day--selected {
+    background-color: #16C79A !important; 
+    color: #fff;
+  }
+  
+  .react-datepicker-wrapper,.react-datepicker__input-container{
+    margin: 0 !important;
+  }
+  
+  
+  /* styling the refresh button */
+  .refresh-btn {
+    display: flex;
+    justify-content: center;
+    padding: 1px 0;
+  }
+  
+  .refresh-btn button {
+    align-self: flex-end; 
+    background-color: #16C79A;
+    color: white;
+    font-weight: bold;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  
+  .refresh-btn button:hover {
+    opacity: 70%;
+    transition: 0.2s ease;
+  }
+  
+  .show > .row {
+    margin: 20px 0 ;
+  }
+  
+  .show .label {
+    display: flex;
+    align-self:center; 
+    padding: 0 10px 0 0;
+    max-width: fit-content;
+  }
+  
+  .show .option {
+    border: 2px solid;
+    border-radius: 8px;
+    margin-right: 10px;
+    padding: 5px 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .show .option.all-request {
+    border-color:#008DDA ;
+  }
+  
+  .show .option.all-request:hover{
+    background-color:#008DDA ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.all-request.selected{
+    background-color:#008DDA ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.pending-request {
+    border-color:#FFC107 ;
+  }
+  
+  .show .option.pending-request:hover{
+    background-color:#FFC107 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.pending-request.selected{
+    background-color:#FFC107 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.approved-request {
+    border-color:#4CAF50 ;
+  }
+  
+  .show .option.approved-request:hover{
+    background-color:#4CAF50 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.approved-request.selected{
+    background-color:#4CAF50 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.denied-request {
+    border-color:#F44336 ;
+  }
+  
+  .show .option.denied-request:hover{
+    background-color:#F44336 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .show .option.denied-request.selected{
+    background-color:#F44336 ;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+  }
+  
+  .note {
+    display: flex;
+    align-self: end;
+  }
+  
+  #number-of-requests {
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .rendered-list{
+    margin: 0 auto;
+    padding: 20px;
+    max-height: 550px;
+    overflow: scroll;
+  }
+  
+  .request-preview {
+    margin-bottom: 20px;
+    padding: 20px; 
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    transition: transform 0.3s ease;
+    background-color: white;
+    
+  }
+  
+  .request-preview:hover {
+    transform: translateY(-5px);
+  }
+  
+  .request-preview a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .request-preview h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    overflow-wrap: break-word; /* Allow text wrapping */
+    padding-bottom: 5px;
+  }
+  
+  .request-preview p {
+    margin: 5px 0;
+    overflow-wrap: break-word; /* Allow text wrapping */
+  }
+  
+  .request-preview p > span.bold {
+    font-weight: bold; /* Set text to bold */
+  }
+  
+  .pending-request {
+    border-color: #FFC107; /* Yellow color for pending request */
+  }
+  
+  .approved-request {
+    border-color: #4CAF50; /* Green color for approved request */
+  }
+  
+  .denied-request {
+    border-color: #F44336; /* Red color for denied request */
+  }
+  
