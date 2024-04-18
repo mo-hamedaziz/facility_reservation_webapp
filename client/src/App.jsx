@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import RequestList from "./RequestList";
-import RequestDetails from "./RequestDetails";
-import NotFound from "./NotFound";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import PresidentDetails from "./PresidentDetails";
-import SignupRequestPresidentListSelector from "./SignupRequestPresidentListSelector";
-import PresidentRequests from "./PresidentRequests";
-import SignupRequestDetails from "./SignupRequestDetails";
 
+// imports for Aziz
+import RequestList from './RequestList';
+import RequestDetails from './RequestDetails';
+import NotFound from './NotFound';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import PresidentDetails from './PresidentDetails';
+import SignupRequestPresidentListSelector from './SignupRequestPresidentListSelector';
+import SignupRequestDetails from './SignupRequestDetails'
+
+// imports for Ines
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ProfilePage from "./ProfilePage";
@@ -28,20 +30,7 @@ function App() {
         </div>
         <div className="content">
           <Routes>
-            <Route path="/request/list" element={<RequestList />} />
-            <Route path="/request/details" element={<RequestDetails />} />
-            <Route
-              path="/users"
-              element={<SignupRequestPresidentListSelector />}
-            />
-            <Route
-              path="/users/president/details"
-              element={<PresidentDetails />}
-            />
-            <Route
-              path="/users/signup/request/details"
-              element={<SignupRequestDetails />}
-            />
+            {/*Ines's routes*/}
             <Route path="/" element={<Home />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
@@ -52,6 +41,24 @@ function App() {
             <Route path="/dashboard/admin" element={<DashboardAdmin />} />
             <Route path="/accountdetails" element={<ProfilePage />} />
             <Route path="/signup-success" element={<SignUpSuccess />} />
+
+            {/*Aziz's routes*/}
+            <Route 
+              path='/request/list'
+              element={<RequestList />}
+            />
+            <Route 
+              path="/request/details"
+              element={<RequestDetails />}/>
+            <Route 
+              path="/users"
+              element={<SignupRequestPresidentListSelector />}/>
+            <Route 
+              path="/users/president/details"
+              element={<PresidentDetails />}/>
+            <Route 
+              path="/users/signup/request/details"
+              element={<SignupRequestDetails />}/>
 
             <Route path="*" element={<NotFound />} />
           </Routes>
