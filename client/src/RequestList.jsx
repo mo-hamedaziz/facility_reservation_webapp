@@ -154,17 +154,13 @@ const RequestList = () => {
         });
       })
       .catch((error) => {
-        // Handle different types of errors
         let errorMessage = "An error occurred while fetching data.";
+
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          errorMessage = `Server responded with ${error.response.status}.\nInternal Server Error !`;
+          errorMessage = `Server responded with ${error.response.status}.\n${error.response.data.errMsg}`;
         } else if (error.request) {
-          // The request was made but no response was received
           errorMessage = "No response received from the server.";
         } else {
-          // Something happened in setting up the request that triggered an Error
           errorMessage = "Error setting up the request.";
         }
         setData({

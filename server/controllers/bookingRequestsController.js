@@ -1,5 +1,6 @@
 const BookingRequest = require("../models/bookingRequestModel");
 const Classroom = require("../models/classroomsModel");
+const President = require("../models/presidentsModel");
 
 // Get all booking requests
 const getAllBookingRequests = async (req, res) => {
@@ -7,7 +8,15 @@ const getAllBookingRequests = async (req, res) => {
     let filter = {};
 
     if (req.query.id) {
-      filter.sender = req.query.id; // Assuming id is for filtering by ID
+      const president = await President.findOne({ _id: req.query.id });
+
+      if (!president) {
+        return res
+          .status(404)
+          .json({ errMsg: "There is no registered president with this ID." });
+      }
+
+      filter.sender = req.query.id;
     }
 
     if (
