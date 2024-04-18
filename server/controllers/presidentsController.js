@@ -1,6 +1,13 @@
 const bcrypt = require("bcrypt");
+
 const President = require("../models/presidentsModel");
 const BookingRequest = require("../models/bookingRequestModel");
+
+const sendEmail = require("../utils/nodeMailerAPI");
+const {
+  generateRandomPassword,
+  passwordEmailBody
+} = require("../utils/passwordOperations");
 
 // Get all presidents
 const getAllPresidents = async (req, res) => {
@@ -59,31 +66,38 @@ const deleteSinglePresident = async (req, res) => {
 const addPresident = async (req, res) => {
   try {
     const { firstName, lastName, cin, phoneNumber, email, clubName } = req.body;
-
-    const generatedPassword = generateRandomPassword(12);
-    console.log(generatedPassword);
-    // const password = req.body.password; // Extract password from req.body
-
-    // Hash the password using bcrypt
+    const generatedPassword = generateRandomPassword(20);
     const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
-    // Create a new instance of President model with provided data
     const newPresident = new President({
       firstName,
       lastName,
       cin,
       phoneNumber,
       email,
-      password: hashedPassword, // Store the hashed password in the database
+      password: hashedPassword,
       clubName,
     });
 
-    // Save the new president to the database
+    const passwordEmail = await sendEmail(
+      "Facility Reservation App",
+      "mohamedaziz0801@gmail.com",
+      newPresident.email,
+      "Your Reservation App Password",
+      passwordEmailBody(generatedPassword)
+    );
+
+    if (!passwordEmail) {
+      console.log("Sending password email has failed :(");
+      return res.status(500).json({ error: "Failed to send password email" });
+    }
+
     const savedPresident = await newPresident.save();
 
-    res.status(201).json(savedPresident); // Respond with the saved president
+    res.status(201).json(savedPresident);
   } catch (error) {
-    res.status(400).json({ message: error.message }); // Handle any errors
+    console.error("Error adding president:", error);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -92,17 +106,6 @@ const handleServerError = (res, error) => {
   console.error("Internal Server Error:", error);
   res.status(500).json({ error: "Internal Server Error" });
 };
-
-// Define a function to generate a random password
-function generateRandomPassword(length) {
-  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let password = '';
-  for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-  }
-  return password;
-}
 
 module.exports = {
   getAllPresidents,
