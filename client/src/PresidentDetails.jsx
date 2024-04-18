@@ -126,7 +126,7 @@ const PresidentDetails = () => {
                 <Col className="controls">
                   <button
                     id="view-requests"
-                    onClick={() => navigate(`/requests/user/${president.id}`)}
+                    onClick={() => navigate(`/request/list?id=${president._id}`)}
                   >
                     View Requests
                   </button>

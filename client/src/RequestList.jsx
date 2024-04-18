@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import DatePicker from "react-datepicker";
+import { useNavigate, useLocation } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
-import TimeAgo from "react-timeago";
 import "./RequestList.css";
+import RenderedRequestList from "./RenderedRequestList";
 
 const RequestList = () => {
   const [refresh, setRefresh] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(useLocation().search);
+  const show = searchParams.get("show") || "all";
+  const id = searchParams.get("id");
+  const [selectedStatus, setSelectedStatus] = useState(show);
+  const allowedValues = ["all", "pending", "approved", "denied"];
+
   const [data, setData] = useState({
     locations: [],
     originalRequests: [],
@@ -18,8 +24,9 @@ const RequestList = () => {
     isLoading: true,
     error: null,
   });
+
   const [specificDaySwitch, setSpecificDaySwitch] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleRefresh = () => {
     setRefresh(!refresh);
@@ -99,9 +106,15 @@ const RequestList = () => {
     });
   };
 
-  const toggleSelected = (status) => {
+  const toggleSelected = (status, id) => {
+    if (!allowedValues.includes(status)) {
+      status = "all";
+    }
     setSelectedStatus(status);
-    useAxiosGet(status);
+    navigate(`/request/list${!id ? "?show=" : `?id=${id}&show=`}${status}`, {
+      replace: true,
+    });
+    useAxiosGet(status, id);
     setSpecificDaySwitch(false);
   };
 
@@ -118,13 +131,17 @@ const RequestList = () => {
     }
   };
 
-  const useAxiosGet = (showOption) => {
+  const useAxiosGet = (showOption, id) => {
+    const apiUrl = !id
+      ? `/api/booking/request/list?show=${showOption}`
+      : `/api/booking/request/list?id=${id}&show=${showOption}`;
+
     setData({
       ...data,
       isLoading: true,
       error: null,
     });
-    const apiUrl = `/api/booking/request/list?show=${showOption}`;
+
     axios
       .get(apiUrl)
       .then((response) => {
@@ -136,17 +153,30 @@ const RequestList = () => {
           error: null,
         });
       })
-      .catch(() => {
+      .catch((error) => {
+        // Handle different types of errors
+        let errorMessage = "An error occurred while fetching data.";
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          errorMessage = `Server responded with ${error.response.status}.\nInternal Server Error !`;
+        } else if (error.request) {
+          // The request was made but no response was received
+          errorMessage = "No response received from the server.";
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          errorMessage = "Error setting up the request.";
+        }
         setData({
           ...data,
           isLoading: false,
-          error: "Error has occurred while trying to fetch data!",
+          error: errorMessage,
         });
       });
   };
 
   useEffect(() => {
-    useAxiosGet(selectedStatus);
+    toggleSelected(show, id);
   }, [refresh]);
 
   return (
@@ -161,6 +191,7 @@ const RequestList = () => {
                 label="Select a specific day:"
                 checked={specificDaySwitch}
                 onChange={handleSpecificDaySwitchChange}
+                disabled={data.originalRequests.length === 0}
               />
             </Form.Label>
             <DatePicker
@@ -179,6 +210,7 @@ const RequestList = () => {
               onChange={(e) => {
                 handleSelectSpecificLocation(e.target.value);
               }}
+              disabled={data.originalRequests.length === 0}
             >
               <option value="any-location">Any</option>
               {data.locations.map((location, index) => (
@@ -193,6 +225,7 @@ const RequestList = () => {
             <Form.Select
               className="form-select"
               onChange={(e) => handleSortChange(e.target.value)}
+              disabled={data.originalRequests.length === 0}
             >
               <option value="submission-time">Submission Time (Default)</option>
               <option value="event-date">Event Date</option>
@@ -241,53 +274,14 @@ const RequestList = () => {
           <Col></Col>
         </Row>
       </Row>
-      <br />
       <Row className="fetching">
         {data.error && <div className="error-msg">{data.error}</div>}
         {data.isLoading && <h2 className="loading-screen">Loading ...</h2>}
         {!data.isLoading && !data.error && (
-          <h2 id="number-of-requests">
-            Number of requests: {data.filteredRequests.length}
-          </h2>
-        )}
-        {!data.isLoading && !data.error && data.filteredRequests && (
-          <div className="rendered-list">
-            {data.filteredRequests.map((request) => (
-              <div
-                key={request._id}
-                className={`request-preview ${getRequestStatusClass(
-                  request.status
-                )}`}
-                title="Consult this request"
-              >
-                <Link to={`/request/details?id=${request._id}`}>
-                  <h2>
-                    {request.event.name} ({request.event.type})
-                  </h2>
-                  <p>
-                    <span className="bold">Sent by:</span>{" "}
-                    {request.sender.firstName} {request.sender.lastName} -{" "}
-                    {request.sender.clubName}
-                  </p>
-                  <p>
-                    <span className="bold">Date:</span>{" "}
-                    {new Date(request.event.date).toLocaleDateString("en-GB")} (
-                    {request.event.time})
-                  </p>
-                  <p>
-                    <span className="bold">Location:</span>{" "}
-                    {request.requested_classroom.name}
-                  </p>
-                  <p className="time-ago">
-                    *Was submitted{" "}
-                    <TimeAgo
-                      date={new Date(request.createdAt).toLocaleString()}
-                    />
-                  </p>
-                </Link>
-              </div>
-            ))}
-          </div>
+          <RenderedRequestList
+            data={data}
+            getRequestStatusClass={getRequestStatusClass}
+          />
         )}
       </Row>
     </Container>

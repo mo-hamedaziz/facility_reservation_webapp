@@ -78,14 +78,14 @@ const RequestDetails = () => {
           {request && (
             <>
               <article className="details">
-                <h1>{request._event.name}</h1>
+                <h1>{request.event.name}</h1>
                 <p>
-                  <strong>Sent By:</strong> {request._sender.firstName}{" "}
-                  {request._sender.lastName}
+                  <strong>Sent By:</strong> {request.sender.firstName}{" "}
+                  {request.sender.lastName}
                 </p>
                 <p>
                   <strong>Club Name: </strong>
-                  {request._sender.clubName}
+                  {request.sender.clubName}
                 </p>
                 <p>
                   <strong>This request was submitted at:</strong>{" "}
@@ -96,22 +96,26 @@ const RequestDetails = () => {
                 </p>
                 <hr />
                 <p>
-                  <strong>Event Type:</strong> {request._event.type}
+                  <strong>Event Type:</strong> {request.event.type}
                 </p>
                 <p>
                   <strong>Event Date:</strong>{" "}
-                  {new Date(request._event.date).toLocaleDateString("en-GB")}
+                  {new Date(request.event.date).toLocaleDateString("en-GB")}
                 </p>
                 <p>
-                  <strong>Event Duration:</strong> {request._event.time}
+                  <strong>Event Duration:</strong> {request.event.time}
                 </p>
                 <p>
                   <strong>Participants Count:</strong>{" "}
-                  {request._event.number_of_participants}
+                  {request.event.number_of_participants}
+                </p>
+                <p>
+                  <strong>Requested Classrom:</strong> Salle{" "}
+                  {request.requested_classroom.name}
                 </p>
                 <hr />
                 <h3>Event Description:</h3>
-                <p id="evDesc">{request._event.description}</p>
+                <p id="evDesc">{request.event.description}</p>
                 <hr />
                 <p>
                   <strong>Attachments:</strong> {request.attachment} (Feature to
