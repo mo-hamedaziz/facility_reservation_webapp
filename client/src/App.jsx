@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import RequestList from './RequestList';
@@ -8,7 +8,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import PresidentDetails from './PresidentDetails';
 import SignupRequestPresidentListSelector from './SignupRequestPresidentListSelector';
-import PresidentRequests from './PresidentRequests'
 import SignupRequestDetails from './SignupRequestDetails'
 
 function App() {
