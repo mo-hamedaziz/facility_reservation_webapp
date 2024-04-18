@@ -1,19 +1,20 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/userModel");
+const President = require("../models/presidentsModel");
 
 userLogin = async (req, res) => {
   const { email, password, userType } = req.body;
 
   try {
+    console.log(email);
     // Vérifier si l'utilisateur existe dans la base de données
-    const user = await User.findOne({ email, userType });
+    const president = await President.findOne({ email });
 
-    if (!user) {
+    if (!president) {
       return res.status(401).json({ message: "Invalid User" });
     }
 
     // Comparer les mots de passe
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, president.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });

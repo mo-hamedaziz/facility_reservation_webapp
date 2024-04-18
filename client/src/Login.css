@@ -92,8 +92,24 @@ body {
 }
 
 .link-style:hover {
-  text-decoration: underline; /* Soulignement au survol */
+  text-decoration: underline;
 }
 .forget {
   margin-bottom: 30px;
+}
+.error-msg {
+  margin-bottom: 20px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+.password-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle {
+  cursor: pointer;
+  margin-left: -30px; /* Ajustez la marge pour positionner l'icône à côté de l'entrée */
 }

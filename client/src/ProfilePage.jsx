@@ -43,7 +43,7 @@ function ProfilePage() {
   };
 
   return (
-    <div className="profile-container">
+    <div className="profile-container" style={{ backgroundColor: "#ffffff" }}>
       <h2>Edit Profile</h2>
       <div className="profile-image">
         <img src={profilePicture} alt="Profile" />

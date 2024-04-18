@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./signup.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -9,10 +10,26 @@ function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [cin, setCin] = useState("");
   const [clubName, setClubName] = useState("");
-  const [startMandate, setStartMandate] = useState("");
+  const [startOfMandate, setStartOfMandate] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
+
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phoneNumber ||
+      !cin ||
+      !clubName ||
+      !startOfMandate
+    ) {
+      setErrorMessage("Please fill in all fields");
+      return;
+    }
 
     const newSignupRequest = {
       firstName,
@@ -21,7 +38,7 @@ function SignUp() {
       phoneNumber,
       cin,
       clubName,
-      startMandate,
+      startOfMandate,
     };
 
     axios
@@ -30,16 +47,23 @@ function SignUp() {
         if (!response.data) {
           throw new Error("Sign up failed");
         }
-        console.log("Sign up successful");
-        // Redirect to a confirmation page or perform other actions
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+          navigate("/signup-success");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Sign up error:", error.message);
+        setErrorMessage(error.response.data.message);
       });
   };
 
   return (
     <div className="signup-container">
+      <div className={errorMessage ? "error-msg" : ""}>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
+
       <h1 className="signup-heading">Sign Up</h1>
       <form onSubmit={handleSignUp} className="signup-form">
         <div className="input-container">
@@ -121,14 +145,14 @@ function SignUp() {
           />
         </div>
         <div className="input-container">
-          <label htmlFor="startMandate" className="signup-label">
+          <label htmlFor="startOfMandate" className="signup-label">
             Start Mandate:
           </label>
           <input
             type="date"
-            id="startMandate"
-            value={startMandate}
-            onChange={(e) => setStartMandate(e.target.value)}
+            id="startOfMandate"
+            value={startOfMandate}
+            onChange={(e) => setStartOfMandate(e.target.value)}
             className="signup-input"
           />
         </div>

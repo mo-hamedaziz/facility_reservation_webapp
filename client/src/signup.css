@@ -52,3 +52,20 @@ body {
 .signup-button:hover {
   background-color: #12825c;
 }
+.error-msg {
+  margin-bottom: 20px; /* Add some space between the message and other elements */
+}
+
+/* Style for the error message itself */
+.error-message {
+  color: red; /* Set the text color to red */
+  font-size: 14px; /* Adjust the font size as needed */
+}
+.success-message {
+  background-color: #d4edda; /* Couleur de fond */
+  color: #155724; /* Couleur du texte */
+  border: 1px solid #c3e6cb; /* Bordure */
+  padding: 15px; /* Espacement intérieur */
+  margin-bottom: 20px; /* Marge en bas */
+  border-radius: 4px; /* Bordure arrondie */
+}

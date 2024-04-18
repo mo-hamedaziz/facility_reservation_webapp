@@ -1,4 +1,5 @@
-const TemporaryUser = require("../models/temporaryUserModel");
+const SignupRequest = require("../models/signupRequestsModel");
+const President = require("../models/presidentsModel");
 
 userSignup = async (req, res) => {
   const {
@@ -8,19 +9,25 @@ userSignup = async (req, res) => {
     phoneNumber,
     cin,
     clubName,
-    startMandate,
+    startOfMandate,
   } = req.body;
 
   try {
+    const existingPresident = await President.findOne({ email });
+
+    if (existingPresident) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
+
     // Créer un nouvel utilisateur
-    const newUser = new TemporaryUser({
+    const newUser = new SignupRequest({
       firstName,
       lastName,
       email,
       phoneNumber,
       cin,
       clubName,
-      startMandate,
+      startOfMandate,
     });
 
     await newUser.save();
