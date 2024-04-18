@@ -10,11 +10,14 @@ import PresidentDetails from "./PresidentDetails";
 import SignupRequestPresidentListSelector from "./SignupRequestPresidentListSelector";
 import PresidentRequests from "./PresidentRequests";
 import SignupRequestDetails from "./SignupRequestDetails";
+
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ProfilePage from "./ProfilePage";
 import Home from "./Home";
-import Dashboard from "./Dashboard";
+import DashboardAdmin from "./DashboardAdmin";
+import DashboardPresident from "./DashboardPresident";
+import SignUpSuccess from "./SignUpSuccess";
 
 function App() {
   return (
@@ -44,13 +47,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard/president"
-              element={<Dashboard userType={"president"} />}
+              element={<DashboardPresident />}
             />
-            <Route
-              path="/dashboard/admin"
-              element={<Dashboard userType={"admin"} />}
-            />
-            <Route path="AccountDetails" element={<ProfilePage />} />
+            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+            <Route path="/accountdetails" element={<ProfilePage />} />
+            <Route path="/signup-success" element={<SignUpSuccess />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
