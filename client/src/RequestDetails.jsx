@@ -17,28 +17,17 @@ const RequestDetails = () => {
 
   const generatePDF = () => {
     const input = document.getElementById("pdf-content");
-
-    // Adjust padding of the input element
-    input.style.padding = "10px"; // Adjust as needed
-
-    // Create a new jsPDF instance
-    const pdf = new jsPDF({
-      orientation: "portrait", // or 'landscape'
-      unit: "pt", // unit for coordinates, in this case, points
-      format: "a4", // PDF format
-    });
-
-    // Options for the PDF generation
-    const options = {
-      pagesplit: true, // enable page splitting if content overflows
-      callback: function () {
-        // Save the PDF
+  
+    html2canvas(input, {scale:1.1})
+      .then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, "PNG", 0, 0);
         pdf.save(`${request.event.name} request.pdf`);
-      },
-    };
-
-    // Add HTML content to the PDF
-    pdf.html(input, options);
+      })
+      .catch((error) => {
+        setError("Error generating PDF");
+      });
   };
 
   const fetchData = () => {
@@ -147,8 +136,7 @@ const RequestDetails = () => {
                 <hr />
                 <p>
                   <strong>Attachments:</strong> {request.attachment} (Feature to
-                  be added soon).{" "}
-                  <a href="#">Download now.</a>
+                  be added soon). <a href="#">Download now.</a>
                 </p>
                 <hr />
                 <strong>The club president has left this comment:</strong>
