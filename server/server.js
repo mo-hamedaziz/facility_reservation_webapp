@@ -1,31 +1,31 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const workoutRoutes = require("./routes/dashboardRoutes");
-
-const port = process.env.PORT;
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const bookingRequestRoutes = require('./routes/booking'); // Corrected path for booking routes
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Using middleware
-app.use(express.json());
-app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next();
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// MongoDB Connection
+mongoose.connect('mongodb+srv://mohamedazizbchini:JAft4YbHmrP2zoVb@mernapp.ob6uqv9.mongodb.net/Facility_Reservation_DB?retryWrites=true&w=majority&appName=MERNapp', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
 });
 
-// Dashboard Routes
-app.use('/dashboard',workoutRoutes);
+// Routes
+app.use('/api/booking-requests', bookingRequestRoutes);
 
-// Connect to DB
-console.log('Connecting to the database ...');
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        // Listen for requests
-        app.listen(port, () => {
-            console.log(`Connected to the Database\nListening on port: ${port}`);
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
