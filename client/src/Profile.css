@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 600px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #bdf7cc, #16C79A); /* Adjusted green colors */
+    transition: box-shadow 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-container:hover {
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+}
+
+.profile-name {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: #FFFFFF; /* Changed from #333 to #FFFFFF */
+    font-weight: 600;
+}
+
+.profile-club {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #FFFFFF; /* Changed from #777 to #FFFFFF */
+    font-weight: 400;
+}
+
+.profile-bio {
+    font-size: 0.9em;
+    color: #FFFFFF; /* Changed from #666 to #FFFFFF */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.classic-btn {
+    padding: 12px 24px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #FAF1E6; /* Changed from #34eb6b to #E4EFE7 */
+    color: #333; /* Changed from #fff to #333 for better visibility */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.classic-btn:hover {
+    background-color: #bdf7cc; /* Changed from #2da857 to #bdf7cc */
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.classic-btn:active {
+    transform: scale(0.95);
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    color: #FAF1E6; /* Changed from #333 to #FFFFFF */
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    opacity: 0.7;
+}
+
+.logout-btn {
+    background-color: #eb4d4b;
+}
+
+.logout-btn:hover {
+    background-color: #d34543;
+}
