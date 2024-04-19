@@ -21,6 +21,10 @@ import DashboardAdmin from "./DashboardAdmin";
 import DashboardPresident from "./DashboardPresident";
 import SignUpSuccess from "./SignUpSuccess";
 
+//imports for louay
+import DashPresident from './DashPresident'; 
+import DashAdmin from './DashAdmin';
+
 function App() {
   return (
     <Router>
@@ -59,6 +63,14 @@ function App() {
             <Route 
               path="/users/signup/request/details"
               element={<SignupRequestDetails />}/>
+
+              {/*Louay's routes*/}
+            <Route 
+              path="/adminHome" 
+              element={<DashAdmin />} />
+            <Route
+              path="/presidentHome" 
+              element={<DashPresident />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
