@@ -22,12 +22,14 @@ function Login() {
       const response = await axios.post("/api/user/login", {
         email,
         password,
-        userType,
       });
 
-      if (!response.data) {
+      if (!response.data.token) {
         throw new Error("Invalid credentials");
       }
+
+      // Stocker le token JWT dans le localStorage
+      localStorage.setItem("token", response.data.token);
 
       if (userType === "admin") {
         navigate("/dashboard/admin"); // Rediriger vers la page d'administration

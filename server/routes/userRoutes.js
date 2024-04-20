@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const extractUserFromToken = require("../middleware/auth.js");
 
 const userLogin = require("../controllers/userLoginController");
 const userSignup = require("../controllers/userSignUpController");
@@ -7,7 +8,7 @@ const profileController = require("../controllers/profileController");
 
 router.post("/login", userLogin);
 router.post("/signup", userSignup);
-router.get("/profile", profileController.getProfile);
-router.put("/profile", profileController.updateProfile);
+router.get("/profile", extractUserFromToken, profileController.getProfile);
+router.put("/profile", extractUserFromToken, profileController.updateProfile);
 
 module.exports = router;

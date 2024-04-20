@@ -1,52 +1,92 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import defaultProfilePicture from "./assets/user.png"; // Importez votre image par défaut
+import axios from "axios";
 
 import "./ProfilePage.css";
 
 function ProfilePage() {
-  const [firstName, setFirstName] = useState("Ines");
-  const [lastName, setLastName] = useState("Zghal");
-  const [email, setEmail] = useState("ines.zghal@insat.ucar.tn");
-  const [phone, setPhone] = useState("29361209");
-  const [cin, setCin] = useState("14510081");
-  const [profilePicture, setProfilePicture] = useState(defaultProfilePicture);
+  const [profileData, setProfileData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    cin: "",
+    profilePicture: defaultProfilePicture,
+  });
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get("/api/user/profile", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const data = response.data;
+        const profile = data.profile;
+        setProfileData({
+          firstName: profile.firstName,
+          lastName: profile.lastName,
+          email: profile.email,
+          phone: profile.phoneNumber,
+          cin: profile.cin,
+          profilePicture: profile.profilePicture || defaultProfilePicture,
+        });
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+    setProfileData({ ...profileData, firstName: event.target.value });
   };
 
   const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
+    setProfileData({ ...profileData, lastName: event.target.value });
   };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    setProfileData({ ...profileData, email: event.target.value });
   };
 
   const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
+    setProfileData({ ...profileData, phone: event.target.value });
   };
 
   const handleCinChange = (event) => {
-    setCin(event.target.value);
+    setProfileData({ ...profileData, cin: event.target.value });
   };
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
-    setProfilePicture(URL.createObjectURL(file)); // Convertit le fichier en URL d'objet
+    setProfileData({
+      ...profileData,
+      profilePicture: URL.createObjectURL(file),
+    });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Envoyer les données modifiées au serveur ici
-    console.log("Changes saved!");
+
+    try {
+      await axios.put("/api/user/profile", profileData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log("Changes saved!");
+    } catch (error) {
+      console.error("Error saving profile changes:", error);
+    }
   };
 
   return (
     <div className="profile-container" style={{ backgroundColor: "#ffffff" }}>
       <h2>Edit Profile</h2>
       <div className="profile-image">
-        <img src={profilePicture} alt="Profile" />
+        <img src={profileData.profilePicture} alt="Profile" />
       </div>
       <div className="profile-info">
         <form onSubmit={handleSubmit}>
@@ -55,7 +95,7 @@ function ProfilePage() {
             <input
               type="text"
               id="firstName"
-              value={firstName}
+              value={profileData.firstName}
               onChange={handleFirstNameChange}
             />
           </div>
@@ -64,7 +104,7 @@ function ProfilePage() {
             <input
               type="text"
               id="lastName"
-              value={lastName}
+              value={profileData.lastName}
               onChange={handleLastNameChange}
             />
           </div>
@@ -73,7 +113,7 @@ function ProfilePage() {
             <input
               type="text"
               id="email"
-              value={email}
+              value={profileData.email}
               onChange={handleEmailChange}
             />
           </div>
@@ -82,7 +122,7 @@ function ProfilePage() {
             <input
               type="text"
               id="phone"
-              value={phone}
+              value={profileData.phone}
               onChange={handlePhoneChange}
             />
           </div>
@@ -91,7 +131,7 @@ function ProfilePage() {
             <input
               type="text"
               id="cin"
-              value={cin}
+              value={profileData.cin}
               onChange={handleCinChange}
             />
           </div>
