@@ -16,10 +16,13 @@ const userLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalid User" });
     }
 
-    // Comparer le mot de passe fourni avec le mot de passe hashé dans la base de données
-    if (password !== president.password) {
+    // Comparer les mots de passe
+    const passwordMatch = await bcrypt.compare(password, president.password);
+
+    if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
+
     const token = generateToken(president._id);
     return res.status(200).json({ message: "Login successful", token });
   } catch (error) {
