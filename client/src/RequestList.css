@@ -7,6 +7,11 @@
     border: 3px solid #16C79A;
     border-radius: 10px;
   }
+
+  .disabled-filtering {
+    pointer-events:none;
+    opacity: 50%;
+  }
   
   .filtering div{
     margin: 0 auto;
