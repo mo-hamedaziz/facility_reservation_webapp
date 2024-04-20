@@ -17,8 +17,6 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import ProfilePage from "./ProfilePage";
 import Home from "./Home";
-import DashboardAdmin from "./DashboardAdmin";
-import DashboardPresident from "./DashboardPresident";
 import SignUpSuccess from "./SignUpSuccess";
 
 //imports for louay
@@ -35,16 +33,21 @@ function App() {
         <div className="content">
           <Routes>
             {/*Ines's routes*/}
-            <Route path="/" element={<Home />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
             <Route
-              path="/dashboard/president"
-              element={<DashboardPresident />}
-            />
-            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-            <Route path="/accountdetails" element={<ProfilePage />} />
-            <Route path="/signup-success" element={<SignUpSuccess />} />
+              path="/" 
+              element={<Home />} />
+            <Route
+              path="signup" 
+              element={<SignUp />} />
+            <Route
+              path="/login" 
+              element={<Login />} />
+            <Route
+              path="/accountdetails" 
+              element={<ProfilePage />} />
+            <Route
+              path="/signup-success" 
+              element={<SignUpSuccess />} />
 
             {/*Aziz's routes*/}
             <Route 
@@ -66,10 +69,10 @@ function App() {
 
               {/*Louay's routes*/}
             <Route 
-              path="/adminHome" 
+              path="path="/dashboard/president"" 
               element={<DashAdmin />} />
             <Route
-              path="/presidentHome" 
+              path="/dashboard/admin" 
               element={<DashPresident />} />
 
             <Route path="*" element={<NotFound />} />
