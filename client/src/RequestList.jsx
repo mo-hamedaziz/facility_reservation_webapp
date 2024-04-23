@@ -172,7 +172,10 @@ const RequestList = () => {
   };
 
   useEffect(() => {
-    toggleSelected(show, id);
+    const fetchData = async () => {
+      await toggleSelected(show, id);
+    };
+    fetchData();
   }, [refresh]);
 
   return (
