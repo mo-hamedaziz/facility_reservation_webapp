@@ -6,7 +6,6 @@ import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("clubPresident");
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false); // État pour afficher/masquer le mot de passe
   const navigate = useNavigate(); // Récupérer la fonction de navigation
@@ -28,12 +27,10 @@ function Login() {
         throw new Error("Invalid credentials");
       }
 
-      // Stocker le token JWT dans le localStorage
       localStorage.setItem("token", response.data.token);
-
-      if (userType === "admin") {
+      if (response.data.isAdmin) {
         navigate("/dashboard/admin"); // Rediriger vers la page d'administration
-      } else if (userType === "clubPresident") {
+      } else {
         navigate("/dashboard/president"); // Rediriger vers la page du président du club
       }
     } catch (error) {
@@ -93,20 +90,6 @@ function Login() {
           <span className="link-style" onClick={handleForgotPassword}>
             Forgot your password?
           </span>
-        </div>
-        <div className="input-container">
-          <label htmlFor="userType" className="login-label">
-            User Type:
-          </label>
-          <select
-            id="userType"
-            value={userType}
-            onChange={(e) => setUserType(e.target.value)}
-            className="login-select"
-          >
-            <option value="clubPresident">Club President</option>
-            <option value="admin">Admin</option>
-          </select>
         </div>
         <button type="submit" className="login-button">
           Login

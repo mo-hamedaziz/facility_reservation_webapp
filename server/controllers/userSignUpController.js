@@ -19,7 +19,10 @@ userSignup = async (req, res) => {
       return res.status(400).json({ message: "Email already in use" });
     }
 
-    // Créer un nouvel utilisateur
+    const existingClub = await President.findOne({ clubName });
+    if (existingClub) {
+      return res.status(400).json({ message: "Club name already in use" });
+    }
     const newUser = new SignupRequest({
       firstName,
       lastName,

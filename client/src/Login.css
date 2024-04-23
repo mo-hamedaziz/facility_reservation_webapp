@@ -49,7 +49,7 @@ body {
   font-size: 18px; /* Augmentation de la taille de police */
   font-weight: bold; /* Texte en gras */
   color: #010101; /* Couleur du label */
-  margin-bottom: 5px; /* Ajout d'espace en dessous du label */
+  margin-bottom: 15px; /* Ajout d'espace en dessous du label */
 }
 
 /* Select styles */

@@ -65,13 +65,14 @@ function ProfilePage() {
       ...profileData,
       profilePicture: URL.createObjectURL(file),
     });
+    cd;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await axios.put("/api/user/profile", profileData, {
+      await axios.patch("/api/user/profile", profileData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

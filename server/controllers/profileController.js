@@ -3,7 +3,6 @@ const Profile = require("../models/presidentsModel");
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.user);
-    console.log(req.user); // req.user contient user ID
 
     if (!profile) {
       return res.status(404).json({ message: "Profile not found" });

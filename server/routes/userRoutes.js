@@ -9,6 +9,6 @@ const profileController = require("../controllers/profileController");
 router.post("/login", userLogin);
 router.post("/signup", userSignup);
 router.get("/profile", extractUserFromToken, profileController.getProfile);
-router.put("/profile", extractUserFromToken, profileController.updateProfile);
+router.patch("/profile", extractUserFromToken, profileController.updateProfile);
 
 module.exports = router;
