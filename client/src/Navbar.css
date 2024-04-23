@@ -1,0 +1,81 @@
+.navbar {
+  background-color: rgba(
+    51,
+    51,
+    51,
+    0.8
+  ); /* Utilisation de RGBA pour spécifier la couleur avec une opacité */
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Espacement égal entre les éléments */
+}
+
+.nav-list {
+  list-style-type: none;
+  padding-right: 500px;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Espacement égal entre les éléments */
+}
+
+.nav-item {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.nav-item:first-child {
+  margin-right: 100px; /* Réduire la marge à droite */
+  margin-left: 10px; /* Conserver la marge à gauche */
+}
+
+.photo-item {
+  position: relative;
+}
+
+.photo-circle {
+  width: 30px;
+  height: 30px;
+  background-color: #fff; /* Couleur de fond */
+  border-radius: 50%; /* Pour créer un cercle */
+  background-image: url("../src/assets/user.png"); /* Image par défaut */
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.options-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+}
+
+.photo-item:hover .options-dropdown {
+  display: block;
+}
+
+.options-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option {
+  font-size: 16px;
+  cursor: pointer;
+  color: white; /* Ajout de la couleur blanche */
+}
+
+.option:hover {
+  text-decoration: underline;
+}
+
+.navbar-logo {
+  width: 30px; /* Définir la largeur souhaitée */
+  height: 30px; /* Définir la hauteur souhaitée */
+  margin-right: auto; /* Placer le logo à l'extrême gauche */
+}

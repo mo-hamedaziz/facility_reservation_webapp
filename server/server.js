@@ -8,7 +8,6 @@ const {presidentsRoutes} = require ('./routes/presidentsRoutes');
 const {signupRequestsRoutes} = require('./routes/signupRequestsRoutes');
 
 const port = process.env.PORT;
-
 const app = express();
 
 // Using middleware
@@ -20,8 +19,8 @@ app.use(
   );
 app.use(express.json());
 app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next();
+  console.log(req.path, req.method);
+  next();
 });
 
 // Routes

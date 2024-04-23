@@ -56,11 +56,13 @@
 - When you hit -approve signup request-, this request will delete the request from the signup_requests collection and push it to the presidents collection.
 
 **DELETE /api/users/presidents**:
+
 - When you hit -deny signup request-, this request will delete the request from the signup_requests collection.
 
 # Routes for Louay
 
 **GET /dashboard/president**:
+
 - Yaffichi l dashboard mtaa l president.
 
 **GET /dashboard/admin**:
@@ -69,6 +71,7 @@
 # Routes for Ines
 
 **POST /api/user/login**:
+
 - Handles user login
   
 **POST /api/user/signup/request**:
@@ -82,7 +85,6 @@
   
 **PATCH /api/user/profile/profilePicture**:
 - Updates the user's profile picture
-
 
 # Routes for Ossama
 
