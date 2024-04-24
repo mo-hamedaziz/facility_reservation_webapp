@@ -69,12 +69,13 @@ function App() {
 
               {/*Louay's routes*/}
             <Route 
-              path="path="/dashboard/president"" 
-              element={<DashAdmin />} />
+              path="/dashboard/president"
+              element={<DashPresident />}
+            />
             <Route
               path="/dashboard/admin" 
-              element={<DashPresident />} />
-
+              element={<DashAdmin />} 
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
@@ -86,5 +87,4 @@ function App() {
   );
 }
 
-export default App;
 export default App;

@@ -6,6 +6,7 @@ const cors = require('cors');
 const {bookingRequestRoutes} = require ('./routes/bookingRequestRoutes');
 const {presidentsRoutes} = require ('./routes/presidentsRoutes');
 const {signupRequestsRoutes} = require('./routes/signupRequestsRoutes');
+const {userRoutes} = require('./routes/userRoutes');
 
 const port = process.env.PORT;
 const app = express();
@@ -32,6 +33,9 @@ app.use("/api/users/president", presidentsRoutes);
 
 // Signup requests Routes
 app.use("/api/users/signup/request", signupRequestsRoutes);
+
+// Signup process
+app.use("/api/user", userRoutes);
 
 // Connect to DB
 console.log('Connecting to the database ...');
