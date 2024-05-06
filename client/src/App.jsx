@@ -82,7 +82,9 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
             {/* Ossama's routes*/}
-            <Route path="/booking" element={<BookingProcess />} />
+            <Route
+             path="/bookingProcess"
+              element={<BookingProcess />} />
           </Routes>
         </div>
         <div className="footer">
