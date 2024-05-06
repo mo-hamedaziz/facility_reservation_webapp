@@ -7,7 +7,7 @@ import "./AdminBody.css"
 const AdminBody = () => {
 
     return (
-        <div className="container">
+        <div className="dash-container">
             <div className="boxes">
                 <Link to={`/request/list`} style={{ textDecoration: 'none' }}>
                     <Card style={{ width: '18rem' }} className="box">

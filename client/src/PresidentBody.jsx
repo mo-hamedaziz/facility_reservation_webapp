@@ -9,7 +9,7 @@ const PresidentBody = () => {
   const id = searchParams.get("id");
 
   return (
-    <div className="container">
+    <div className="dash-container">
       <div className="boxes">
         <Link to={`/request/list?id=${id}`} style={{ textDecoration: "none" }}>
           <Card style={{ width: "18rem" }} className="box">

@@ -5,12 +5,12 @@
     width: 80%;
 }
 
+/* 
 .dash-admin-navbar {
-    /* Adjust according to your Navbar's design */
     height: 60px;
     background-color: #333;
     color: #fff;    
-}
+} */
 
 .dash-admin-content {
     display: flex;

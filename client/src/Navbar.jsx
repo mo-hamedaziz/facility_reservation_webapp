@@ -11,7 +11,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar-container">
       <img src={logo} alt="Logo" className="navbar-logo" />{" "}
       {/* Ajoutez votre logo ici */}
       <ul className="nav-list">

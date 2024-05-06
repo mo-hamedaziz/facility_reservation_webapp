@@ -5,12 +5,11 @@
     width: 80%;
 }
 
-.dash-president-navbar {
-    /* Adjust according to your Navbar's design */
+/* .dash-president-navbar {
     height: 60px;
     background-color: #333;
     color: #fff;
-}
+} */
 
 .dash-president-content {
     display: flex;

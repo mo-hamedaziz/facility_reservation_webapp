@@ -30,7 +30,9 @@ function App() {
   return (
     <Router>
       <div className="app">
-      
+        <div className="navbar">
+          <Navbar />
+        </div>
         <div className="content">
           <Routes>
             {/*Ines's routes*/}

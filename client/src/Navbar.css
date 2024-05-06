@@ -1,4 +1,4 @@
-.navbar {
+.navbar-container {
   background-color: rgba(
     51,
     51,
@@ -9,6 +9,7 @@
   padding: 10px 20px;
   display: flex;
   justify-content: space-between; /* Espacement égal entre les éléments */
+  width: 100%;
 }
 
 .nav-list {
