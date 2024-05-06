@@ -23,13 +23,14 @@ import SignUpSuccess from "./SignUpSuccess";
 import DashPresident from './DashPresident'; 
 import DashAdmin from './DashAdmin';
 
+//imports for ossama
+import BookingProcess from './BookingProcess';
+
 function App() {
   return (
     <Router>
       <div className="app">
-        <div className="navbar">
-          <Navbar />
-        </div>
+      
         <div className="content">
           <Routes>
             {/*Ines's routes*/}
@@ -37,7 +38,7 @@ function App() {
               path="/" 
               element={<Home />} />
             <Route
-              path="signup" 
+              path="/signup" 
               element={<SignUp />} />
             <Route
               path="/login" 
@@ -77,6 +78,9 @@ function App() {
               element={<DashAdmin />} 
             />
             <Route path="*" element={<NotFound />} />
+
+            {/* Ossama's routes*/}
+            <Route path="/booking" element={<BookingProcess />} />
           </Routes>
         </div>
         <div className="footer">
