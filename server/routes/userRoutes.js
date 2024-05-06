@@ -1,79 +1,14 @@
-import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+const express = require("express");
+const router = express.Router();
+const extractUserFromToken = require("../middleware/auth.js");
 
-// imports for Aziz
-import RequestList from './RequestList';
-import RequestDetails from './RequestDetails';
-import NotFound from './NotFound';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import PresidentDetails from './PresidentDetails';
-import SignupRequestPresidentListSelector from './SignupRequestPresidentListSelector';
-import SignupRequestDetails from './SignupRequestDetails'
+const userLogin = require("../controllers/userLoginController");
+const userSignup = require("../controllers/userSignUpController");
+const profileController = require("../controllers/profileController");
 
-// imports for Ines
-import Login from "./Login";
-import SignUp from "./SignUp";
-import ProfilePage from "./ProfilePage";
-import Home from "./Home";
-import SignUpSuccess from "./SignUpSuccess";
+router.post("/login", userLogin);
+router.post("/signup", userSignup);
+router.get("/profile", extractUserFromToken, profileController.getProfile);
+router.patch("/profile", extractUserFromToken, profileController.updateProfile);
 
-//imports for louay
-import DashPresident from './DashPresident'; 
-import DashAdmin from './DashAdmin';
-
-//imports for ossama
-import BookingProcess from './BookingProcess';
-
-function App() {
-  // Get the current route parameter
-  const { path } = useParams();
-  // Determine whether to show the navbar based on the current route
-  const showNavbar = !["login", "signup"].includes(path);
-
-  return (
-    <Router>
-      <div className="app">
-        {/* Conditionally render the navbar */}
-        {showNavbar && (
-          <div className="navbar">
-            <Navbar />
-          </div>
-        )}
-        <div className="content">
-          <Routes>
-            {/*Ines's routes*/}
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/accountdetails" element={<ProfilePage />} />
-            <Route path="/signup-success" element={<SignUpSuccess />} />
-
-            {/*Aziz's routes*/}
-            <Route path='/request/list' element={<RequestList />} />
-            <Route path="/request/details" element={<RequestDetails />} />
-            <Route path="/users" element={<SignupRequestPresidentListSelector />} />
-            <Route path="/users/president/details" element={<PresidentDetails />} />
-            <Route path="/users/signup/request/details" element={<SignupRequestDetails />} />
-
-            {/*Louay's routes*/}
-            <Route path="/dashboard/president" element={<DashPresident />} />
-            <Route path="/dashboard/admin" element={<DashAdmin />} />
-
-            {/* Ossama's routes*/}
-            <Route path="/bookingProcess" element={<BookingProcess />} />
-            
-            {/* 404 - Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-        <div className="footer">
-          <Footer />
-        </div>
-      </div>
-    </Router>
-  );
-}
-
-export default App;
+module.exports = {userRoutes:router};
