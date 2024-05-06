@@ -84,12 +84,12 @@ function ProfilePage() {
   };
 
   return (
-    <div className="profile-container" style={{ backgroundColor: "#ffffff" }}>
+    <div className="edit-profile-container" style={{ backgroundColor: "#ffffff" }}>
       <h2>Edit Profile</h2>
-      <div className="profile-image">
+      <div className="edit-profile-image">
         <img src={profileData.profilePicture} alt="Profile" />
       </div>
-      <div className="profile-info">
+      <div className="edit-profile-info">
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="firstName">First Name:</label>
