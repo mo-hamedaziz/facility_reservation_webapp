@@ -64,10 +64,10 @@
   margin: 0;
 }
 
-.option {
+.options-dropdown .option {
   font-size: 16px;
   cursor: pointer;
-  color: white; /* Ajout de la couleur blanche */
+  color: white;  /* Ajout de la couleur blanche */
 }
 
 .option:hover {
