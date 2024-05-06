@@ -26,7 +26,7 @@ const PresidentBody = () => {
             </Card.Body>
           </Card>
         </Link>
-        <Link to="/Booking" style={{ textDecoration: "none" }}>
+        <Link to="/BookingProcess" style={{ textDecoration: "none" }}>
           <Card style={{ width: "18rem" }} className="box">
             <Card.Body>
               <Card.Title className="title">
