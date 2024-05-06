@@ -1,21 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Facebook, Envelope, Linkedin, BoxArrowRight, PersonCircle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Profile.css';
 
 const AdminProfile = () => {
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get('/api/user', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+                setUserData(response.data);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
     return (
         <div className="profile-container">
-            <img 
-                src="https://th.bing.com/th/id/R.b91eab3932c4858ef0f3d6ad275824d9?rik=hLB2TEyjbHT8CQ&pid=ImgRaw&r=0"
-                className="profile-img" 
-                alt="Profile Picture"
-            />
-            <h1 className="profile-name">Name</h1>
-            <Link to="/Account" className="classic-btn" style={{ textDecoration: 'none' }}>
+            {userData ? (
+                <>
+                    <img
+                        src={userData.profilePicture}
+                        className="profile-img"
+                        alt="Profile Picture"
+                    />
+                    <h1 className="profile-name">{userData.name}</h1>
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+            <Link
+                to="/Account"
+                className="classic-btn"
+                style={{ textDecoration: 'none' }}
+            >
                 <PersonCircle color="white" size={20} /> Account
             </Link>
-            <Link to="/Logout" className="classic-btn logout-btn" style={{ textDecoration: 'none' }}>
+            <Link
+                to="/Logout"
+                className="classic-btn logout-btn"
+                style={{ textDecoration: 'none' }}
+            >
                 <BoxArrowRight color="white" size={20} /> Log Out
             </Link>
             <div className="social-media">
