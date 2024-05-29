@@ -25,8 +25,6 @@ app.use((req, res, next) => {
 });
 
 // Routes
-//Booking Routes
-app.use("/api/")
 // Booking Requests Routes
 app.use("/api/booking/request", bookingRequestRoutes);
 
