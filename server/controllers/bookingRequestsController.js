@@ -79,6 +79,17 @@ const changeRequestStatus = async (req, res) => {
   }
 };
 
+
+// Get count of all booking requests
+const getBookingRequestsCount = async (req, res) => {
+  try {
+    const count = await BookingRequest.countDocuments({});
+    res.status(200).json({ count });
+  } catch (error) {
+    handleServerError(res, error);
+  }
+};
+
 // Handle server errors
 const handleServerError = (res, error) => {
   console.error("Internal Server Error:", error);
@@ -89,4 +100,5 @@ module.exports = {
   getAllBookingRequests,
   getSingleRequest,
   changeRequestStatus,
+  getBookingRequestsCount, // export the new controller
 };

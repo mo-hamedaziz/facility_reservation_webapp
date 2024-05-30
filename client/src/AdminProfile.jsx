@@ -5,48 +5,56 @@ import axios from 'axios';
 import './Profile.css';
 
 const AdminProfile = () => {
-    const [userData, setUserData] = useState(null);
+    const [adminData, setAdminData] = useState({
+        name: "",
+        profilePicture: "",
+    });
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const fetchAdminData = async () => {
             try {
-                const response = await axios.get('/api/user', {
+                const response = await axios.get('/api/user/profile', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 });
-                setUserData(response.data);
+                const data = response.data;
+                const profile = data.profile;
+                setAdminData({
+                    name: `${profile.firstName} ${profile.lastName}`,
+                    profilePicture: profile.profilePicture,
+                });
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error('Error fetching admin data:', error);
             }
         };
 
-        fetchUserData();
+        fetchAdminData();
     }, []);
 
     return (
         <div className="profile-container">
-            {userData ? (
+            {adminData.name ? (
                 <>
                     <img
-                        src={userData.profilePicture}
+                        src={adminData.profilePicture}
                         className="profile-img"
                         alt="Profile Picture"
                     />
-                    <h1 className="profile-name">{userData.name}</h1>
+                    <h1 className="profile-name">{adminData.name}</h1>
                 </>
             ) : (
                 <p>Loading...</p>
             )}
             <Link
-                to="/Account"
+                to="/accountdetails"
                 className="classic-btn"
                 style={{ textDecoration: 'none' }}
             >
                 <PersonCircle color="white" size={20} /> Account
             </Link>
             <Link
-                to="/Logout"
+                to="/login"
                 className="classic-btn logout-btn"
                 style={{ textDecoration: 'none' }}
             >
@@ -67,4 +75,4 @@ const AdminProfile = () => {
     );
 }
 
-export default AdminProfile;
+export default AdminProfile;    

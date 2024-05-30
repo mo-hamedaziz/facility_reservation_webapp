@@ -1,55 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Briefcase, CalendarCheck, CalendarEvent } from "react-bootstrap-icons";
-import { Card } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import "./PresidentBody.css";
+import axios from 'axios';
+import styles from "./PresidentBody.module.css";
+
+const CustomCard = ({ title, children, to }) => (
+  <Link to={to} style={{ textDecoration: "none" }}>
+    <div className={styles.box}>
+      <div className={styles.cardBody}>
+        <h2 className={styles.titlex}>{title}</h2>
+        <div className={styles.cardText}>{children}</div>
+      </div>
+    </div>
+  </Link>
+);
 
 const PresidentBody = () => {
   const searchParams = new URLSearchParams(useLocation().search);
   const id = searchParams.get("id");
 
+  const [requestCount, setRequestCount] = useState(0);
+
+  useEffect(() => {
+    axios.get(`/api/users/president/?id=${id}`)
+      .then(response => {
+        setRequestCount(response.data.count);
+      })
+      .catch(error => {
+        console.error('Error fetching request count:', error);
+      });
+  }, [id]);
+
   return (
-    <div className="dash-container">
-      <div className="boxes">
-        <Link to={`/request/list?id=${id}`} style={{ textDecoration: "none" }}>
-          <Card style={{ width: "18rem" }} className="box">
-            <Card.Body>
-              <Card.Title className="title">
-                <h2>See my requests</h2>
-              </Card.Title>
-              <Card.Text>
-                <Briefcase size={32} />
-                <div className="number">
-                  <h4 className="number-color">5</h4>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to="/BookingProcess" style={{ textDecoration: "none" }}>
-          <Card style={{ width: "18rem" }} className="box">
-            <Card.Body>
-              <Card.Title className="title">
-                <h2>Book a classrom</h2>
-              </Card.Title>
-              <Card.Text>
-                <CalendarCheck size={32} />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Link>
-        <Link to="/Availability" style={{ textDecoration: "none" }}>
-          <Card style={{ width: "18rem" }} className="box">
-            <Card.Body>
-              <Card.Title className="title">
-                <h2>Check for Availability</h2>
-              </Card.Title>
-              <Card.Text>
-                <CalendarEvent size={32} />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Link>
+    <div className={styles["dash-container"]}>
+      <div className={styles.boxes}>
+        <CustomCard to={`/request/list?id=${id}`} title="See my requests">
+          <Briefcase size={32} />
+          <div className={styles.number}>
+            <h4 className={styles["number-color"]}>{requestCount}</h4>
+          </div>
+        </CustomCard>
+        <CustomCard to="/BookingProcess" title="Book a classroom">
+          <CalendarCheck size={32} />
+        </CustomCard>
+        <CustomCard to="/Availability" title="Check for Availability">
+          <CalendarEvent size={32} />
+        </CustomCard>
       </div>
     </div>
   );

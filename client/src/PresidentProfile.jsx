@@ -6,73 +6,80 @@ import {
   BoxArrowRight,
   PersonCircle,
 } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
-import axios from "axios"; // Import axios for HTTP requests
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 import "./Profile.css";
 
 const PresidentProfile = () => {
-  const [userData, setUserData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
+
+  const searchParams = new URLSearchParams(useLocation().search);
+  const id = searchParams.get("id");
 
   useEffect(() => {
-    // Fetch user data when component mounts
-    const fetchUserData = async () => {
+    const fetchProfileData = async () => {
+      setIsPending(true);
       try {
-        // Fetch user data from your backend
-        const response = await axios.get("/api/user", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
-          },
+        console.log(id);
+        const response = await axios.get(`/api/users/president/details?id=${id}`);
+        const data = response.data;
+        setProfileData({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          clubName: data.clubName,
         });
-        setUserData(response.data); // Set the user data in state
+        setError(null);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        setError("Failed to fetch data. This may be due to network issues.");
+        console.error("Error fetching profile data:", error);
+      } finally {
+        setIsPending(false);
       }
     };
 
-    fetchUserData(); // Call the function to fetch user data
-  }, []);
+    fetchProfileData();
+  }, [id]);
 
   return (
     <div className="profile-container">
-      {userData ? (
-        <>
-          <img
-            src={userData.profilePicture}
-            className="profile-img"
-            alt="Profile Picture"
-          />
-          <h1 className="profile-name">{userData.name}</h1>
-          <h2 className="profile-club">{userData.club}</h2>
-          <p className="profile-bio">{userData.bio}</p>
-        </>
-      ) : (
+      {error && <div className="error-msg">{error}</div>}
+      {isPending ? (
         <p>Loading...</p>
+      ) : (
+        profileData && (
+          <>
+            <h1 className="profile-name">{`${profileData.firstName} ${profileData.lastName}`}</h1>
+            <h2 className="profile-club">{profileData.clubName}</h2>
+            <Link
+              to="/accountdetails"
+              className="classic-btn"
+              style={{ textDecoration: "none" }}
+            >
+              <PersonCircle color="white" size={20} /> Account
+            </Link>
+            <Link
+              to="/login"
+              className="classic-btn logout-btn"
+              style={{ textDecoration: "none" }}
+            >
+              <BoxArrowRight color="white" size={20} /> Log Out
+            </Link>
+            <div className="social-media">
+              <Link to="/facebook_link" className="social-icon">
+                <Facebook size={32} />
+              </Link>
+              <Link to="/email_link" className="social-icon">
+                <Envelope size={32} />
+              </Link>
+              <Link to="/linkedin_link" className="social-icon">
+                <Linkedin size={32} />
+              </Link>
+            </div>
+          </>
+        )
       )}
-      <Link
-        to="/Account"
-        className="classic-btn"
-        style={{ textDecoration: "none" }}
-      >
-        <PersonCircle color="white" size={20} /> Account
-      </Link>
-      <Link
-        to="/Logout"
-        className="classic-btn logout-btn"
-        style={{ textDecoration: "none" }}
-      >
-        <BoxArrowRight color="white" size={20} /> Log Out
-      </Link>
-      <div className="social-media">
-        <Link to="/facebook_link" className="social-icon">
-          <Facebook size={32} />
-        </Link>
-        <Link to="/email_link" className="social-icon">
-          <Envelope size={32} />
-        </Link>
-        <Link to="/linkedin_link" className="social-icon">
-          <Linkedin size={32} />
-        </Link>
-      </div>
     </div>
   );
 };

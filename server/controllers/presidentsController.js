@@ -101,6 +101,17 @@ const addPresident = async (req, res) => {
   }
 };
 
+// Get count of all presidents
+const getPresidentsCount = async (req, res) => {
+  try {
+    const count = await President.countDocuments({});
+    res.status(200).json({ count });
+  } catch (error) {
+    console.error("Error fetching presidents count:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Handle server errors
 const handleServerError = (res, error) => {
   console.error("Internal Server Error:", error);
@@ -112,4 +123,5 @@ module.exports = {
   getSinglePresident,
   deleteSinglePresident,
   addPresident,
+  getPresidentsCount, // export the new controller
 };
