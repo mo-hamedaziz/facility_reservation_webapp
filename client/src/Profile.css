@@ -9,7 +9,7 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #bdf7cc, #16C79A); /* Adjusted green colors */
+    background: linear-gradient(to right, #bdf7cc, #16c79a); /* Adjusted green colors */
     transition: box-shadow 0.3s ease;
     font-family: 'Poppins', sans-serif;
 }
