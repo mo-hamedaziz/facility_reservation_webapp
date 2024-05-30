@@ -23,8 +23,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 230px;
-  height: 220px;
+  width: 250px;
+  height: 240px;
   border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   background: linear-gradient(to right, #bdf7cc, #16c79a);
@@ -43,7 +43,7 @@
 }
 
 .titlex {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
   color: #ffffff;

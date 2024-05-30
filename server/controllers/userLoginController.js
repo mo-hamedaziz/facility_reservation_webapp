@@ -22,7 +22,7 @@ const userLogin = async (req, res) => {
 
     const passwordMatch = president
       ? await bcrypt.compare(password, president.password)
-      : await bcrypt.compare(password, admin.password);
+      : await compare(password, admin.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });

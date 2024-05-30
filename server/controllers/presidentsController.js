@@ -108,7 +108,7 @@ const getPresidentsCount = async (req, res) => {
     res.status(200).json({ count });
   } catch (error) {
     console.error("Error fetching presidents count:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.toString() });
   }
 };
 

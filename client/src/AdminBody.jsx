@@ -10,8 +10,9 @@ const AdminBody = () => {
   const [requestCount, setRequestCount] = useState(0);
 
   useEffect(() => {
-    axios.get(`/api/presidents/count`)
+    axios.get(`/api/users/president/count`)
       .then(response => {
+        console.log(response.data);
         setPresidentCount(response.data.count);
       })
       .catch(error => {

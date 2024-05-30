@@ -7,6 +7,7 @@ const {bookingRequestRoutes} = require ('./routes/bookingRequestRoutes');
 const {presidentsRoutes} = require ('./routes/presidentsRoutes');
 const {signupRequestsRoutes} = require('./routes/signupRequestsRoutes');
 const {userRoutes} = require('./routes/userRoutes');
+const {adminRoutes} = require('./routes/adminRoutes'); // Import the admin routes
 
 const port = process.env.PORT;
 const app = express();
@@ -36,6 +37,9 @@ app.use("/api/users/signup/request", signupRequestsRoutes);
 
 // Signup process
 app.use("/api/user", userRoutes);
+
+// Admin Routes
+app.use("/api/admin", adminRoutes); // Use the admin routes
 
 // Connect to DB
 console.log('Connecting to the database ...');
