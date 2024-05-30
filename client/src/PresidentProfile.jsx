@@ -22,7 +22,8 @@ const PresidentProfile = () => {
     const fetchProfileData = async () => {
       setIsPending(true);
       try {
-        const response = await axios.get(`/api/president/details?id=${id}`);
+        console.log(id);
+        const response = await axios.get(`/api/users/president/details?id=${id}`);
         const data = response.data;
         setProfileData({
           firstName: data.firstName,
