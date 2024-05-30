@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 600px; /* Changed from min-height to height */
+  height: 650px; /* Changed from min-height to height */
   background: linear-gradient(to right, #faf1e6, #fdfaf6);
-  padding-top: 20px;
+  padding-top: 0px;
   box-sizing: border-box;
 }
 

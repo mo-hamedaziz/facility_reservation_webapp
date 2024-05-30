@@ -5,8 +5,8 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
-    height: 600px;
-    padding: 20px;
+    height: 630px;
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: linear-gradient(to right, #bdf7cc, #16c79a); /* Adjusted green colors */

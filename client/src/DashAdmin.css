@@ -10,15 +10,15 @@
     flex: 1;
     justify-content: space-between;
     align-items: stretch;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 0px;
+    background-color: #fef7e5;
 }
 
 .dash-admin-profile {
     /* Adjust according to your AdminProfile's design */
     flex: 1;
     background-color: #fff;
-    padding: 20px;
+    padding: 0 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,7 +26,6 @@
     /* Adjust according to your AdminBody's design */
     flex: 3;
     background-color: #fff;
-    padding: 20px;
+    padding: 0 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
