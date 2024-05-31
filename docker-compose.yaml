@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: app:latest
+    ports:
+      - '5000:5173'
+      - '3000:3000'
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:3000
+      - PORT=3000
+      - MONGO_URI=mongodb+srv://mohamedazizbchini:JAft4YbHmrP2zoVb@mernapp.ob6uqv9.mongodb.net/Facility_Reservation_DB?retryWrites=true&w=majority&appName=MERNapp
+      - MAILGUN_API_KEY=1ee3b3f2425d1c2d6eecebd49b1f3a9c-19806d14-96f1b1b0
+      - NODEMAILER_USER=mohamedaziz0801
+      - NODEMAILER_PASS=emxyczvworfivxdj
+      - JWT_SECRET="mysecret"
+    volumes:
+      - .:/app
