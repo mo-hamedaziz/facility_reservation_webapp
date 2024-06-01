@@ -73,6 +73,7 @@ function App() {
           </Routes>
         </div>
         <div className="footer">
+          <br />
           <Footer />
         </div>
       </div>
