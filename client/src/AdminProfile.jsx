@@ -9,6 +9,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Profile.css";
+import defaultPhoto from '../public/images/sonia.jpg'; // Add this line
 
 const AdminProfile = () => {
   const [profileData, setProfileData] = useState(null);
@@ -52,6 +53,7 @@ const AdminProfile = () => {
       ) : (
         profileData && (
           <>
+            <img src={defaultPhoto} alt="Admin" className="profile-img" /> {/* Add this line */}
             <h1 className="profile-name">{`${profileData.firstName} ${profileData.lastName}`}</h1>
             <Link
               to="/accountdetails"
