@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME = 'app'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'docker build -t $IMAGE_NAME .'
+                    echo 'Building the project'
+                }
+            }
+        }
+        stage('Run') {
+            steps {
+                script {
+                    sh 'docker run -d --name app $IMAGE_NAME'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    // Replace this with your actual test command
+                    sh 'docker exec app echo "Running tests"'
+                    echo 'Testing the project'
+                }
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo 'Deploying the project'
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker rm -f app || true'
+        }
+    }
+}
