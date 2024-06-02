@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+require('./eventModel');
+require('./classroomsModel');
+require('./presidentsModel');
+
 const Schema = mongoose.Schema;
 
 const BookingRequestSchema = new Schema({
@@ -30,16 +34,12 @@ const BookingRequestSchema = new Schema({
         type: String,
         required: true
     },
-    submissionTime: {
-        type: Date,
+    status: {
+        type: String,
         required: true
     },
     responseTime: {
         type: Date,
-        required: true
-    },
-    status: {
-        type: String,
         required: true
     },
 }, {timestamps:true});

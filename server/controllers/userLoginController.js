@@ -12,7 +12,7 @@ const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    console.log(email);
+    //console.log(email);
     const president = await President.findOne({ email });
     const admin = await Admin.findOne({ email });
 
@@ -20,18 +20,23 @@ const userLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalid User" });
     }
 
-    const passwordMatch = president
-      ? await bcrypt.compare(password, president.password)
-      : await bcrypt.compare(password, admin.password);
+    let passwordMatch;
+    if (president) {
+      passwordMatch = await bcrypt.compare(password, president.password);
+    } else if (admin) {
+      passwordMatch = password === admin.password; // Plaintext comparison for admin
+    }
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = generateToken(president ? president._id : admin._id);
+    const userId = president ? president._id : admin._id;
+    const token = generateToken(userId);
+
     return res
       .status(200)
-      .json({ message: "Login successful", token, isAdmin: !!admin });
+      .json({ message: "Login successful", token, isAdmin: !!admin, userId });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });

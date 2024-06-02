@@ -1,8 +1,10 @@
-#For the server folder
+# Server Folder
 server/node_modules
 # After completing the dev phase, we should add server/.env to the .gitignore file
 
 #For the client folder
+client/node_modules
+
 # Logs
 client/logs
 client/*.log
@@ -12,7 +14,6 @@ client/yarn-error.log*
 client/pnpm-debug.log*
 client/lerna-debug.log*
 
-client/node_modules
 client/dist
 client/dist-ssr
 client/*.local

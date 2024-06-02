@@ -1,0 +1,86 @@
+.profile-container-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fdfaf6;
+  border-radius: 20px;
+}
+
+.profile-container-home h2 {
+  text-align: center;
+}
+
+.date-container-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.date-container-home label {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  color: #16c79a;
+  display: block;
+  margin-right: 10px; /* Ajout d'un espace entre le label et la date */
+}
+
+.date-container-home span {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  color: #333;
+}
+
+.profile-info-home {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap; /* Empêcher le wrapping pour s'assurer que les éléments sont horizontaux */
+}
+
+.room-box-home {
+  flex: 0 0 auto; /* Assurez-vous que les éléments ne rétrécissent pas */
+  width: calc(50% - 20px); /* Deux éléments par ligne avec un espace de 20px */
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.profile-image-home {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-image-home img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+
+.room-details-home,
+.room-events-home {
+  padding-left: 20px;
+}
+
+.room-events-home ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.room-events-home label,
+.room-details-home label {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  color: #16c79a;
+  display: block;
+}
+
+.room-details-home span,
+.room-events-home ul {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  color: #333;
+}

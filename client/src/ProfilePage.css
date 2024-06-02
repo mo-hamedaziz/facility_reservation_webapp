@@ -1,4 +1,4 @@
-.profile-container {
+.edit-profile-container {
   max-width: 600px;
   margin: 0 auto;
   margin-top: 20px;
@@ -6,34 +6,34 @@
   background-color: #fdfaf6;
   border-radius: 20px;
 }
-.profile-container h2 {
+.edit-profile-container h2 {
   padding-left: 200px;
 }
-.profile-info {
+.edit-profile-info {
   margin-top: 20px;
 }
 
-.profile-info div {
+.edit-profile-info div {
   margin-bottom: 10px;
   padding-left: 20px;
 }
 
-.profile-info label {
+.edit-profile-info label {
   font-family: "Quicksand", sans-serif;
   font-weight: 500;
   color: #16c79a;
   display: block;
 }
 
-.profile-info input[type="text"],
-.profile-info input[type="file"] {
+.edit-profile-info input[type="text"],
+.edit-profile-info input[type="file"] {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.profile-info button {
+.edit-profile-info button {
   background-color: #16c79a;
   color: white;
   padding: 10px 20px;
@@ -45,12 +45,12 @@
   margin-left: 200px;
 }
 
-.profile-info button:hover {
+.edit-profile-info button:hover {
   background-color: #13a86b;
 }
 
-.profile-info input[type="text"],
-.profile-info input[type="file"] {
+.edit-profile-info input[type="text"],
+.edit-profile-info input[type="file"] {
   width: 90%;
   padding: 8px; /* Ajuster le rembourrage selon vos besoins */
   border: 1px solid #ccc;
@@ -58,12 +58,12 @@
   font-size: 16px;
 }
 
-.profile-image {
+.edit-profile-image {
   margin-bottom: 20px;
   margin-left: 200px;
 }
 
-.profile-image img {
+.edit-profile-image img {
   width: 150px; /* Ajustez la taille de l'image selon vos besoins */
   height: 150px; /* Ajustez la taille de l'image selon vos besoins */
   border-radius: 50%; /* Pour créer un cercle */

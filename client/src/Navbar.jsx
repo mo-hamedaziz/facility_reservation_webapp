@@ -1,45 +1,43 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../src/assets/logo.png"; // Importez votre logo depuis le chemin correct
-import { Link } from "react-router-dom";
+import Logo from "../src/assets/logo.png";
 
-function Navbar() {
-  const [showOptions, setShowOptions] = useState(false);
+const Navbar = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const handlePhotoClick = () => {
-    setShowOptions(!showOptions);
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   return (
-    <nav className="navbar">
-      <img src={logo} alt="Logo" className="navbar-logo" />{" "}
-      {/* Ajoutez votre logo ici */}
-      <ul className="nav-list">
-        <li className="nav-item">
-          <span role="img" aria-label="Home"></span> Home
-        </li>
-        <li className="nav-item">
-          <span role="img" aria-label="Book"></span> Book
-        </li>
-      </ul>
-      <div className="photo-item" onClick={handlePhotoClick}>
-        <div className="photo-circle"></div>
-        {showOptions && (
-          <div className="options-dropdown">
-            <ul className="options-list">
-              <Link to="/AccountDetails">
-                <li className="option">Account Details</li>
-              </Link>
-
-              <Link to="/login">
-                <li className="option">Logout</li>
-              </Link>
-            </ul>
-          </div>
-        )}
+    <nav className="navbar-container">
+      <div className="navbar-logo">
+        <img src={Logo} alt="logo" />
+      </div>
+      <div className="nav-elements">
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/bookingProcess">Book</NavLink>
+          </li>
+          <li>
+            <div className="dropdown" onClick={toggleDropdown}>
+              <NavLink to="#">My Profile</NavLink>
+              {showDropdown && (
+                <div className="dropdown-content">
+                  <NavLink to="/accountdetails">Manage Profile</NavLink>
+                  <NavLink to="/login">Logout</NavLink>
+                </div>
+              )}
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

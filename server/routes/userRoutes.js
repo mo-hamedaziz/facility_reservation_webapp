@@ -11,4 +11,4 @@ router.post("/signup", userSignup);
 router.get("/profile", extractUserFromToken, profileController.getProfile);
 router.patch("/profile", extractUserFromToken, profileController.updateProfile);
 
-module.exports = router;
+module.exports = {userRoutes:router};

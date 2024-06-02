@@ -1,0 +1,33 @@
+.dash-president {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 100%;
+}
+
+
+.dash-president-content {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0px;
+    background-color: #fff;
+}
+
+.dash-president-profile {
+    /* Adjust according to your PresidentProfile's design */
+    flex: 1;
+    background-color: #fff;
+    padding-left: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dash-president-body {
+    /* Adjust according to your AdminBody's design */
+    flex: 3;
+    background-color: #fff;
+    padding-right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

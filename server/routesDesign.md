@@ -6,10 +6,10 @@
 - This page is only visible to admins. 
 - This list is fetched from the bookingRequests collection.
 
-**GET /api/booking/request/list/details?id=<request_id>**:
+**GET /api/booking/request/details?id=<request_id>**:
 - If you are an admin, you have access to this page where you can see the details of a specific request and manage it.
 
-**PATCH GET /api/booking/request/list/details?id=<request_id>**:
+**PATCH GET /api/booking/request/details?id=<request_id>**:
 - If you are an admin, this request is sent when you hit -deny request- or -approve request-. 
 - It updates the status attribute.
 
@@ -29,7 +29,7 @@
 **POST /api/user/requests/create**:
 - If you are a logged-in president, you can create a new request.
 
-**GET /api/users/presidents**:
+**GET /api/users/president/list**:
 - If you are an admin, then this page will be visible for you and will display the full list of registered presidents. 
 - This request will communicate with the presidents collection.
 

@@ -1,0 +1,97 @@
+.rendering-details {
+    margin: 20px auto;
+  }
+  
+.details-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 10px 10px #ccc;
+    padding: 10px;
+  }
+
+  button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+
+  .back-to-list {
+    margin: 10px;
+  }
+
+  .back-to-list > img {
+    min-width: 50%;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #008DDA !important;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .back-to-list > img:hover {
+    opacity: 70%;
+  }
+
+  .picture-and-name {
+    margin: 10px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Increase border radius for a softer frame */
+    padding: 0;
+    box-shadow: 0 0 20px #ccc, inset 0 0 10px #ccc; /* Add outer and inner shadow for a glowing effect */
+    background: linear-gradient(45deg, #fff, #f0f0f0); /* Gradient background for depth */
+    display: flex;
+    flex-direction: column;
+}
+
+.picture-and-name img {
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 15px; /* Match border radius of the frame */
+    flex: 1;
+}
+
+.picture-and-name h2 {
+    font-weight: bold;
+    background-color: #eaeaea;
+    padding: 20px 20px;
+    margin: 0;
+    border-bottom-left-radius: 20px; /* Ensure border radius matches frame */
+    border-bottom-right-radius: 20px;
+    overflow: auto;
+    word-wrap: break-word;
+    
+}
+
+.profile-data {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    word-wrap: break-word;
+}
+
+.profile-data > #expiration-date {
+  color: var(--darkGray);
+}
+
+.details > .controls {
+    text-align: right;
+    align-self: flex-end;
+    margin: 10px;
+}
+
+.details > .controls > #view-requests {
+    background-color: var(--blue);
+}
+
+.details > .controls > #delete-user, #deny-request{
+    background-color: var(--red);
+}
+
+.details > .controls > #approve-request{
+  background-color: var(--green);
+}

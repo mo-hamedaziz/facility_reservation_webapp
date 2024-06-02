@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+
+/* base styles */
+:root {
+  --white: #FEFEE2;
+  --blue: #008DDA;
+  --gray: #ccc;
+  --darkGray: #A9A9A9;
+  --red: #F44336;
+  --green: #16c79a;
+  --yellow: #FFC107;
+  --border-radius: 4px;
+  --transition: 0.3s ease;
+  --font-family: Quicksand;
+  
+}
+
+*{
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: #fef7e5;
+  height: 100%;
+}
+
+/* Disable focus styles */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh; /* Ensures the container takes up the full viewport height */
+  flex-direction: column;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  padding: 0;
+}
+
+.content {
+  flex: 1; /* Allows content to expand and fill remaining space */
+}
+
+.error-msg {
+  border: 2px solid var(--red);
+  border-radius: 8px;
+  color: var(--red);
+  padding: 20px 10px;
+  background-color: rgba(244, 67, 54, 0.1);
+  font-weight: bold;
+  width: fit-content;
+  max-width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  white-space: pre-line;
+}
+
+.loading-screen {
+  text-align: center;
+  font-weight: bold;
+}
+
+.go-back-to-list-btn {
+  background-color: #008DDA;
+  margin: 20px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.go-back-to-list-btn:hover {
+  opacity: 70%;
+}
+
+.go-back-to-list-btn > img {
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
+}
+
+
+
+
+

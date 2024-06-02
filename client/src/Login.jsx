@@ -29,9 +29,9 @@ function Login() {
 
       localStorage.setItem("token", response.data.token);
       if (response.data.isAdmin) {
-        navigate("/dashboard/admin"); // Rediriger vers la page d'administration
+        navigate(`/dashboard/admin?id=${response.data.userId}`); // Rediriger vers la page d'administration
       } else {
-        navigate("/dashboard/president"); // Rediriger vers la page du président du club
+        navigate(`/dashboard/president?id=${response.data.userId}`); // Rediriger vers la page du président du club
       }
     } catch (error) {
       console.error("Login error:", error.message);
