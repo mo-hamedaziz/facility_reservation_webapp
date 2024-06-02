@@ -4,7 +4,7 @@
 
 The Facility Reservation Platform serves as a solution tailored to the needs of INSAT's student community, aiming to streamline the process of booking classrooms for various events and workshops organized by student clubs. Developed as part of our Professional Personal Project (PPP) during our third year at INSAT, this platform enhances the efficiency and user-friendliness of reservation management, ultimately contributing to the betterment of student life within the institution.
 
-## Introduction
+## 🌟 Introduction
 
 The Facility Reservation Platform is a web application developed to address specific needs within INSAT's student community. Its primary objectives are:
 
@@ -16,7 +16,7 @@ The Facility Reservation Platform is a web application developed to address spec
 
 ![Home Page](https://raw.githubusercontent.com/mo-hamedaziz/facility_reservation_webapp/main/images/homepage.png)
 
-## Technology Stack
+## 🚀 Technology Stack
 
 The Facility Reservation Platform was built using the following technologies:
 
@@ -24,7 +24,7 @@ The Facility Reservation Platform was built using the following technologies:
 - **NGINX:** Used as a reverse proxy server to handle client requests and distribute them to the appropriate backend services.
 - **Docker:** Utilized for containerization to ensure consistency across different environments and simplify deployment processes.
 
-## Features
+## ✨ Features
 
 ### Admin
 - **Admin Panel Access:** Admins can access a dedicated panel upon login.
@@ -45,7 +45,7 @@ The Facility Reservation Platform was built using the following technologies:
 - **Reservation Status:** View the status of all their reservation requests.
 - **Reservation Calendar:** Access the reservation calendar to view bookings.
 
-## Installation Guide
+## 🛠️ Installation Guide
 
 ### Prerequisites
 - Node.js (v14 or above)
@@ -98,17 +98,17 @@ The Facility Reservation Platform was built using the following technologies:
       docker-compose up --build
       ```
 
-## Contributors
+## 👨‍💻 Contributors
 - [Bchini Mohamed Aziz](https://github.com/bchinimohamedaziz)
 - [Ferjani Oussama](https://github.com/ferjanioussama)
 - [Merji Louay](https://github.com/merjilouay)
 - [Zghal Ines](https://github.com/zghalines)
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 Special thanks to the INSAT DVURE department (Direction de la Vie Universitaire et des Relations avec l'Environnement) for providing the opportunity to develop this platform and contribute to the enhancement of student life at INSAT.
 
 We would also like to express our gratitude to Mr. Mohamed Ali Zormati for his invaluable help and supervision during the development process.
 
-## Contact
+## 📧 Contact
 For any inquiries, please contact [mohamedaziz.bchini@insat.ucar.tn].
