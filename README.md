@@ -14,6 +14,8 @@ The Facility Reservation Platform is a web application developed to address spec
 - Implement administrative features for managing and approving reservations.
 - Ultimately contribute to the improved management of student life at INSAT.
 
+![Home Page](https://raw.githubusercontent.com/mo-hamedaziz/facility_reservation_webapp/main/images/homepage.png)
+
 ## Technology Stack
 
 The Facility Reservation Platform was built using the following technologies:
