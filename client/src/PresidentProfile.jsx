@@ -44,7 +44,6 @@ const PresidentProfile = () => {
         });
         setError(null);
       } catch (error) {
-        setError("Failed to fetch data. This may be due to network issues.");
         console.error("Error fetching profile data:", error);
       } finally {
         setIsPending(false);
