@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import salleA from "./assets/audito.jpg";
 import salleB from "./assets/conf.jpg";
@@ -15,13 +16,13 @@ const Home = () => {
     {
       id: 1,
       name: "Auditorium",
-      image: salleA, // Assurez-vous que les images sont dans le dossier public
+      image: salleA,
       events: ["Réunion marketing"],
     },
     {
       id: 2,
       name: "Conference room",
-      image: salleB, // Assurez-vous que les images sont dans le dossier public
+      image: salleB,
       events: ["Présentation client"],
     },
   ];
@@ -54,8 +55,11 @@ const Home = () => {
               </div>
             </div>
           ))}
+        </div> {/* Closing tag for profile-info-home div */}
+        <div className="button-container">
+          <Link to="/login" className="login-button">Login</Link>
         </div>
-      </div>
+      </div> {/* Closing tag for profile-container-home div */}
     </div>
   );
 };
